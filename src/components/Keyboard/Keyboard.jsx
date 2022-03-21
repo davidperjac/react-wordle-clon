@@ -1,4 +1,4 @@
-import keys from '../constants/keys';
+import keys from '../../constants/keys';
 import { Group, Space } from '@mantine/core';
 import Letter from './Letter';
 import { useEffect } from 'react';

@@ -1,5 +1,5 @@
 import { Group } from '@mantine/core';
-import Card from './Card';
+import Card from '../Grid/Card';
 
 const Row = () => {
 	return (

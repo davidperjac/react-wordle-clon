@@ -1,4 +1,7 @@
-import { Modal, Text, Group } from '@mantine/core';
+import { Modal, Text, Group, Space } from '@mantine/core';
+import AdultWord from '../Words/AdultWord';
+import CoachWord from '../Words/CoachWord';
+import DreamWord from '../Words/DreamWord';
 
 const InfoModal = ({ infoModal, setInfoModal }) => {
 	return (
@@ -26,15 +29,17 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 				<Text size="md" weight={800}>
 					Examples
 				</Text>
-				<Text size="md" weight={500}>
-					The letter W is in the word and in the correct spot.
-				</Text>
-				<Text size="md" weight={500}>
-					The letter I is in the word but in the wrong spot.
-				</Text>
-				<Text size="md" weight={500}>
-					The letter U is not in the word in any spot.
-				</Text>
+				<Space h="md" />
+				<Space h="md" />
+				<Space h="md" />
+				<Space h="md" />
+				<Space h="md" />
+				<Space h="md" />
+				<Space h="md" />
+				<Space h="md" />
+				<AdultWord />
+				<CoachWord />
+				<DreamWord />
 				<Text size="md" weight={800}>
 					A new REACDLE will be available each day!
 				</Text>
