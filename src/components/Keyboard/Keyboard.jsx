@@ -1,28 +1,45 @@
+import { Group, Space, Dialog, Text } from '@mantine/core';
+import { useKeyboardPress } from '../../utils/useKeyboardPress';
 import keys from '../../constants/keys';
-import { Group, Space } from '@mantine/core';
 import Letter from './Letter';
-import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setError } from '../../redux/actions';
+
+//TODO: CREATE A NOTIFICATIONS SYSTEM
 
 const Keyboard = () => {
-	useEffect(() => {
-		window.addEventListener('keydown', (event) => {
-			console.log(event.key);
-		});
-	}, []);
+	const dispatch = useDispatch();
+	const error = useSelector((state) => state.error);
 
+	useKeyboardPress();
 	return (
-		<Group direction="column" spacing="xs">
-			{keys.map((row, rowIndex) => {
-				return (
-					<Group spacing="xss" key={rowIndex}>
-						{rowIndex > 0 && <Space w="md" />}
-						{row.map((letter, letterIndex) => {
-							return <Letter letter={letter} key={letterIndex} />;
-						})}
-					</Group>
-				);
-			})}
-		</Group>
+		<>
+			<Dialog
+				opened={error}
+				withCloseButton
+				onClose={() => dispatch(setError())}
+				size="lg"
+				radius="md"
+			>
+				<Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+					Subscribe to email newsletter
+				</Text>
+			</Dialog>
+			<Group direction="column" spacing="xs">
+				{keys.map((row, rowIndex) => {
+					return (
+						<Group spacing="xss" key={rowIndex}>
+							{rowIndex > 0 && <Space w="lg" />}
+							{row.map((letter, letterIndex) => {
+								return (
+									rowIndex < 3 && <Letter letter={letter} key={letterIndex} />
+								);
+							})}
+						</Group>
+					);
+				})}
+			</Group>
+		</>
 	);
 };
 

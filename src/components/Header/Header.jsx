@@ -1,9 +1,10 @@
-import { Title, Group } from '@mantine/core';
+import { Group } from '@mantine/core';
 import { useState } from 'react';
 import InfoModal from './InfoModal';
 import InfoButton from './InfoButton';
 import StatsButton from './StatsButton';
 import ThemeButton from './ThemeButton';
+import Name from './Name';
 
 const Header = () => {
 	const [infoModal, setInfoModal] = useState(false);
@@ -12,9 +13,7 @@ const Header = () => {
 			<InfoModal infoModal={infoModal} setInfoModal={setInfoModal} />
 			<Group position="center" spacing="xl">
 				<InfoButton setInfoModal={setInfoModal} />
-				<Title order={1} align="center">
-					REACDLE
-				</Title>
+				<Name />
 				<StatsButton />
 				<ThemeButton />
 			</Group>

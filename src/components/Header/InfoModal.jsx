@@ -1,4 +1,4 @@
-import { Modal, Text, Group, Space } from '@mantine/core';
+import { Modal, Text, Group } from '@mantine/core';
 import AdultWord from '../Words/AdultWord';
 import CoachWord from '../Words/CoachWord';
 import DreamWord from '../Words/DreamWord';
@@ -6,9 +6,9 @@ import DreamWord from '../Words/DreamWord';
 const InfoModal = ({ infoModal, setInfoModal }) => {
 	return (
 		<Modal
-			transition="slide-down"
-			transitionDuration={400}
-			transitionTimingFunction="ease"
+			transition="scale-y"
+			transitionDuration={600}
+			transitiontimingfunction="ease"
 			opened={infoModal}
 			onClose={() => setInfoModal(false)}
 			title="HOW TO PLAY!"
@@ -27,16 +27,8 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 					tiles will change to show how close your guess was to the word.
 				</Text>
 				<Text size="md" weight={800}>
-					Examples
+					Here you have some examples!
 				</Text>
-				<Space h="md" />
-				<Space h="md" />
-				<Space h="md" />
-				<Space h="md" />
-				<Space h="md" />
-				<Space h="md" />
-				<Space h="md" />
-				<Space h="md" />
 				<AdultWord />
 				<CoachWord />
 				<DreamWord />

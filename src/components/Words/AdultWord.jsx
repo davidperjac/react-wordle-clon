@@ -1,26 +1,24 @@
 import { Group, Text, Title } from '@mantine/core';
-import Card from '../Grid/Card';
+import InfoCard from '../Header/InfoCard';
 
 const AdultWord = () => {
 	return (
 		<>
 			<Group spacing="xss">
-				<Card
+				<InfoCard
 					letter="A"
-					width={30}
-					height={30}
-					border="2px solid #74B816"
-					backgroundColor="#74B816"
+					border="2px solid #6ba964"
+					backgroundColor="#6ba964"
 					color="white"
 				/>
-				<Card letter={'D'} width={30} height={30} />
-				<Card letter={'U'} width={30} height={30} />
-				<Card letter={'L'} width={30} height={30} />
-				<Card letter={'T'} width={30} height={30} />
+				<InfoCard letter={'D'} />
+				<InfoCard letter={'U'} />
+				<InfoCard letter={'L'} />
+				<InfoCard letter={'T'} />
 			</Group>
 			<Text size="md" weight={500}>
 				The letter{' '}
-				<Title weight="bold" inherit component="span" order={5}>
+				<Title weight="bold" component="span" order={5}>
 					A
 				</Title>{' '}
 				is in the word and in the correct spot.
