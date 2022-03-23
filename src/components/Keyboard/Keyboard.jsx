@@ -1,13 +1,13 @@
 import { Group, Space } from '@mantine/core';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
 import { useSubmit } from '../../hooks/useSubmit';
-import { useCurrentWord } from '../../hooks/useCurrentWord';
+import { useWords } from '../../hooks/useWords';
 import ErrorModal from './ErrorModal';
 import keys from '../../constants/keys';
 import Letter from './Letter';
 
 const Keyboard = () => {
-	const { dispatch, isShort, isNotDictionary } = useCurrentWord();
+	const { dispatch, isShort, isNotDictionary } = useWords();
 	const { key, setKey } = useKeyboardPress();
 
 	useSubmit(key, setKey, dispatch, isShort, isNotDictionary);

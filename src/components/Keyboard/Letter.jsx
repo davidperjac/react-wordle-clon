@@ -1,21 +1,19 @@
 import { Center, Title } from '@mantine/core';
 import { addLetter, sendWord, setError } from '../../redux/actions';
-import { useCurrentWord } from '../../hooks/useCurrentWord';
-import { useSelector } from 'react-redux';
+import { useWords } from '../../hooks/useWords';
 import { getCardColor } from '../../utils/getCardColor';
 import { isLetterUsed } from '../../utils/isLetterUsed';
+import { useTheme } from '../../hooks/useTheme';
 
 //TODO: CHANGE LETTERS IN KEYBOARD ACORDING TO THE WORD
 
 const Letter = ({ letter }) => {
-	const { dispatch, isShort, isNotDictionary } = useCurrentWord();
-	const gridWords = useSelector((state) => state.gridWords);
+	const { dispatch, isShort, isNotDictionary, gridWords, searchWord } =
+		useWords();
 	const lastWord = gridWords[gridWords.length - 1];
-	const searchWord = useSelector((state) => state.searchWord);
-	const dark = useSelector((state) => state.dark);
+	const { dark } = useTheme();
 
 	const col = lastWord?.indexOf(letter);
-
 	const used = isLetterUsed(gridWords, letter);
 
 	const handleClick = () => {

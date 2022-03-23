@@ -1,12 +1,12 @@
 import { HiSun } from 'react-icons/hi';
 import { RiMoonClearFill } from 'react-icons/ri';
 import { ActionIcon } from '@mantine/core';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { changeTheme } from '../../redux/actions';
+import { useTheme } from '../../hooks/useTheme';
 
 const ThemeButton = () => {
-	const dark = useSelector((state) => state.dark);
-	const dispatch = useDispatch();
+	const { dark, dispatch } = useTheme();
 
 	const handleClick = () => {
 		dispatch(changeTheme());
