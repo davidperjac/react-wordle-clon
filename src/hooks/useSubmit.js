@@ -12,7 +12,7 @@ export const useSubmit = (key, setKey, dispatch, isShort, isNotDictionary) => {
 				dispatch(sendWord());
 			}
 		} else {
-			dispatch(addLetter(key === '⌫' ? 'BACKSPACE' : key));
+			key !== '' && dispatch(addLetter(key === '⌫' ? 'BACKSPACE' : key));
 		}
 		return () => {
 			setKey('');

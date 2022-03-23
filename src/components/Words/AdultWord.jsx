@@ -4,7 +4,7 @@ import InfoCard from '../Header/InfoCard';
 const AdultWord = () => {
 	return (
 		<>
-			<Group spacing="xss">
+			<Group spacing="xs">
 				<InfoCard
 					letter="A"
 					border="2px solid #6ba964"

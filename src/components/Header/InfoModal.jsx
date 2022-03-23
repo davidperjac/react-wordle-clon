@@ -8,7 +8,7 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 		<Modal
 			transition="scale-y"
 			transitionDuration={600}
-			transitiontimingfunction="ease"
+			transitiontimingfunction="linear"
 			opened={infoModal}
 			onClose={() => setInfoModal(false)}
 			title="HOW TO PLAY!"

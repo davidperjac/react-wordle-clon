@@ -4,6 +4,8 @@ import StatsButton from './StatsButton';
 import ThemeButton from './ThemeButton';
 import Name from './Name';
 
+//TODO: ADD DARK MODE Y STATS MODAL
+
 const Header = () => {
 	return (
 		<Group position="center" spacing="xl">

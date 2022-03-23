@@ -1,4 +1,9 @@
-import { ADD_LETTER, SEND_WORD, SET_ERROR } from '../actions/types';
+import {
+	ADD_LETTER,
+	CHANGE_THEME,
+	SEND_WORD,
+	SET_ERROR,
+} from '../actions/types';
 
 const initialState = {
 	victory: false,
@@ -6,6 +11,7 @@ const initialState = {
 	guessWord: '',
 	gridWords: [],
 	error: '',
+	dark: false,
 };
 
 export const reacdleReducer = (state = initialState, action) => {
@@ -30,6 +36,11 @@ export const reacdleReducer = (state = initialState, action) => {
 			return {
 				...state,
 				error: action.payload,
+			};
+		case CHANGE_THEME:
+			return {
+				...state,
+				dark: !state.dark,
 			};
 		default:
 			return { ...state };

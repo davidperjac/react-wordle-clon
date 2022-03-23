@@ -6,6 +6,7 @@ const Card = ({ col, row }) => {
 	const words = useSelector((state) => state.gridWords);
 	const guessWord = useSelector((state) => state.guessWord);
 	const searchWord = useSelector((state) => state.searchWord);
+	const dark = useSelector((state) => state.dark);
 
 	const content =
 		row === words.length ? guessWord[col] : words[row]?.charAt(col);
@@ -16,9 +17,9 @@ const Card = ({ col, row }) => {
 		border: content !== undefined ? '2px solid #495057' : '2px solid #CED4DA',
 		backgroundColor:
 			row !== words.length
-				? getCardColor(words[row]?.charAt(col), searchWord, col)
+				? getCardColor(words[row]?.charAt(col), searchWord, col, dark)
 				: 'none',
-		color: row === words.length ? 'black' : 'white',
+		color: dark ? 'white' : row === words.length ? 'black' : 'white',
 	};
 	return (
 		<Center style={cardStyling}>

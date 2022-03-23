@@ -1,8 +1,7 @@
-//import Footer from '../components/Footer';
-import Header from '../components/Header/Header';
 import Keyboard from '../components/Keyboard/Keyboard';
-import Grid from '../components/Grid/Grid';
+import Header from '../components/Header/Header';
 import { Space, Group } from '@mantine/core';
+import Grid from '../components/Grid/Grid';
 
 const Home = () => {
 	return (

@@ -1,4 +1,4 @@
-import { ADD_LETTER, SEND_WORD, SET_ERROR } from './types';
+import { ADD_LETTER, SEND_WORD, SET_ERROR, CHANGE_THEME } from './types';
 
 export const addLetter = (payload) => ({
 	type: ADD_LETTER,
@@ -12,4 +12,8 @@ export const sendWord = () => ({
 export const setError = (payload) => ({
 	type: SET_ERROR,
 	payload,
+});
+
+export const changeTheme = () => ({
+	type: CHANGE_THEME,
 });
