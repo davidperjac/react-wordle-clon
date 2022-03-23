@@ -5,11 +5,15 @@ import { getCardColor } from '../../utils/getCardColor';
 import { isLetterUsed } from '../../utils/isLetterUsed';
 import { useTheme } from '../../hooks/useTheme';
 
-//TODO: CHANGE LETTERS IN KEYBOARD ACORDING TO THE WORD
-
 const Letter = ({ letter }) => {
-	const { dispatch, isShort, isNotDictionary, gridWords, searchWord } =
-		useWords();
+	const {
+		dispatch,
+		isShort,
+		isNotDictionary,
+		gridWords,
+		searchWord,
+		guessWord,
+	} = useWords();
 	const lastWord = gridWords[gridWords.length - 1];
 	const { dark } = useTheme();
 
@@ -26,25 +30,28 @@ const Letter = ({ letter }) => {
 				dispatch(sendWord());
 			}
 		} else {
-			dispatch(addLetter(letter === '⌫' ? 'BACKSPACE' : letter));
+			if (letter === '⌫' && guessWord !== '') {
+				dispatch(addLetter('BACKSPACE'));
+			} else {
+				dispatch(addLetter(letter === '⌫' ? 'BACKSPACE' : letter));
+			}
 		}
 	};
 
+	const backgroundColor = (theme) =>
+		used
+			? getCardColor(letter, searchWord, col)
+			: dark
+			? theme.colors.gray[6]
+			: theme.colors.gray[3];
+
 	const letterStyle = (theme) => ({
-		backgroundColor:
-			used && lastWord?.includes(letter)
-				? getCardColor(letter, searchWord, col)
-				: dark
-				? theme.colors.gray[6]
-				: theme.colors.gray[3],
+		backgroundColor: backgroundColor(theme),
 		cursor: 'pointer',
 		width: 45,
 		height: 50,
 		borderRadius: '5px',
-		color:
-			dark || (getCardColor(letter, searchWord, col) === '#495057' && used)
-				? 'white'
-				: 'black',
+		color: dark || (used && !searchWord.includes(letter)) ? 'white' : 'black',
 	});
 
 	return (
