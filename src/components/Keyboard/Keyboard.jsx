@@ -1,7 +1,7 @@
 import { Group, Space } from '@mantine/core';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
-import { useCurrentWord } from '../../hooks/useCurrentWord';
 import { useSubmit } from '../../hooks/useSubmit';
+import { useCurrentWord } from '../../hooks/useCurrentWord';
 import ErrorModal from './ErrorModal';
 import keys from '../../constants/keys';
 import Letter from './Letter';

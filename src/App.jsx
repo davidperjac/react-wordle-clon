@@ -4,16 +4,14 @@ import { useSelector } from 'react-redux';
 
 function App() {
 	const theme = useSelector((state) => state.dark);
+	const styles = {
+		spacing: {
+			xss: 3,
+		},
+		colorScheme: theme ? 'dark' : 'light',
+	};
 	return (
-		<MantineProvider
-			withGlobalStyles
-			theme={{
-				spacing: {
-					xss: 3,
-				},
-				colorScheme: theme ? 'dark' : 'light',
-			}}
-		>
+		<MantineProvider withGlobalStyles theme={styles}>
 			<Home />
 		</MantineProvider>
 	);

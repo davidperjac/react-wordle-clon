@@ -11,7 +11,9 @@ const initialState = {
 	guessWord: '',
 	gridWords: [],
 	error: '',
-	dark: false,
+	dark:
+		window.matchMedia &&
+		window.matchMedia('(prefers-color-scheme: dark)').matches,
 };
 
 export const reacdleReducer = (state = initialState, action) => {
