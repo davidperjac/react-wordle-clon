@@ -1,30 +1,20 @@
-import { Group, Space, Dialog, Text } from '@mantine/core';
-import { useKeyboardPress } from '../../utils/useKeyboardPress';
+import { Group, Space } from '@mantine/core';
+import { useKeyboardPress } from '../../hooks/useKeyboardPress';
+import { useCurrentWord } from '../../hooks/useCurrentWord';
+import { useSubmit } from '../../hooks/useSubmit';
+import ErrorModal from './ErrorModal';
 import keys from '../../constants/keys';
 import Letter from './Letter';
-import { useSelector, useDispatch } from 'react-redux';
-import { setError } from '../../redux/actions';
-
-//TODO: CREATE A NOTIFICATIONS SYSTEM
 
 const Keyboard = () => {
-	const dispatch = useDispatch();
-	const error = useSelector((state) => state.error);
+	const { dispatch, isShort, isNotDictionary } = useCurrentWord();
+	const { key, setKey } = useKeyboardPress();
 
-	useKeyboardPress();
+	useSubmit(key, setKey, dispatch, isShort, isNotDictionary);
+
 	return (
 		<>
-			<Dialog
-				opened={error}
-				withCloseButton
-				onClose={() => dispatch(setError())}
-				size="lg"
-				radius="md"
-			>
-				<Text size="sm" style={{ marginBottom: 10 }} weight={500}>
-					Subscribe to email newsletter
-				</Text>
-			</Dialog>
+			<ErrorModal />
 			<Group direction="column" spacing="xs">
 				{keys.map((row, rowIndex) => {
 					return (

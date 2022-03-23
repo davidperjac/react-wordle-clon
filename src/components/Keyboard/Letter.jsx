@@ -1,23 +1,23 @@
 import { Center, Title } from '@mantine/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { addLetter, sendWord } from '../../redux/actions';
+import { addLetter, sendWord, setError } from '../../redux/actions';
+import { useCurrentWord } from '../../hooks/useCurrentWord';
 
 //TODO: CHANGE LETTERS IN KEYBOARD ACORDING TO THE WORD
 
 const Letter = ({ letter }) => {
-	const dispatch = useDispatch();
-	const guessWord = useSelector((state) => state.guessWord);
-	const searchWord = useSelector((state) => state.searchWord);
-
-	const col = guessWord.indexOf(letter);
+	const { dispatch, isShort, isNotDictionary } = useCurrentWord();
 
 	const handleClick = () => {
-		if (letter !== '⏎') {
+		if (letter === '⏎') {
+			if (isShort) {
+				dispatch(setError('Not Enough Letters!!'));
+			} else if (isNotDictionary) {
+				dispatch(setError('Not In Word List!!'));
+			} else {
+				dispatch(sendWord());
+			}
+		} else {
 			dispatch(addLetter(letter === '⌫' ? 'BACKSPACE' : letter));
-		}
-		if (guessWord.length === 5) {
-			console.log(col);
-			dispatch(sendWord(letter === '⏎' && 'ENTER'));
 		}
 	};
 

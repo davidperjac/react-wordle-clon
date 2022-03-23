@@ -9,6 +9,7 @@ export const sendWord = () => ({
 	type: SEND_WORD,
 });
 
-export const setError = () => ({
+export const setError = (payload) => ({
 	type: SET_ERROR,
+	payload,
 });
