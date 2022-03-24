@@ -3,7 +3,7 @@ import Card from '../Grid/Card';
 
 const Row = ({ row }) => {
 	return (
-		<Group spacing="xs">
+		<Group spacing="xss">
 			<Card col={0} row={row} />
 			<Card col={1} row={row} />
 			<Card col={2} row={row} />

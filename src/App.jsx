@@ -6,7 +6,8 @@ function App() {
 	const theme = useSelector((state) => state.dark);
 	const styles = {
 		spacing: {
-			xss: 3,
+			xss: 5,
+			xssT: 3,
 		},
 		colorScheme: theme ? 'dark' : 'light',
 	};

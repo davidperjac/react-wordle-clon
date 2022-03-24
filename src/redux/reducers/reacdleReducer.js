@@ -5,10 +5,11 @@ import {
 	SET_ERROR,
 	FINISH_GAME,
 } from '../actions/types';
+import { words } from '../../constants/words';
 
 const initialState = {
 	end: false,
-	searchWord: 'ADULT',
+	searchWord: 'TEETH',
 	guessWord: '',
 	gridWords: [],
 	error: '',

@@ -9,11 +9,17 @@ import { finishGame } from '../../redux/actions';
 import { useEffect } from 'react';
 
 const Keyboard = () => {
-	const { dispatch, isShort, isNotDictionary, searchWord, gridWords } =
-		useWords();
+	const {
+		dispatch,
+		isShort,
+		isNotDictionary,
+		searchWord,
+		gridWords,
+		guessWord,
+	} = useWords();
 	const { key, setKey } = useKeyboardPress();
 
-	useSubmit(key, setKey, dispatch, isShort, isNotDictionary);
+	useSubmit(key, setKey, dispatch, isShort, isNotDictionary, guessWord);
 
 	useEffect(() => {
 		if (gridWords.includes(searchWord) || gridWords.length === 6) {
@@ -21,13 +27,15 @@ const Keyboard = () => {
 		}
 	}, [gridWords, searchWord, dispatch]);
 
+
+
 	return (
 		<>
 			<ErrorModal />
 			<Group direction="column" spacing="xs">
 				{keys.map((row, rowIndex) => {
 					return (
-						<Group spacing="xss" key={rowIndex}>
+						<Group spacing="xssT" key={rowIndex}>
 							{rowIndex > 0 && <Space w="lg" />}
 							{row.map((letter, letterIndex) => {
 								return (

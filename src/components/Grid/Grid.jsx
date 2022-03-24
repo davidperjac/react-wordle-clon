@@ -3,7 +3,7 @@ import { Group } from '@mantine/core';
 
 const Grid = () => {
 	return (
-		<Group direction="column" spacing="xs">
+		<Group direction="column" spacing="xss">
 			<Row row={0} />
 			<Row row={1} />
 			<Row row={2} />

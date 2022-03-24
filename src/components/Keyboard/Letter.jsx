@@ -4,6 +4,7 @@ import { useWords } from '../../hooks/useWords';
 import { getCardColor } from '../../utils/getCardColor';
 import { isLetterUsed } from '../../utils/isLetterUsed';
 import { useTheme } from '../../hooks/useTheme';
+import { useEffect, useState } from 'react';
 
 const Letter = ({ letter }) => {
 	const {
@@ -19,6 +20,7 @@ const Letter = ({ letter }) => {
 
 	const col = lastWord?.indexOf(letter);
 	const used = isLetterUsed(gridWords, letter);
+	const [color, setColor] = useState(getCardColor(letter, searchWord, col));
 
 	const handleClick = () => {
 		if (letter === '⏎') {
@@ -32,18 +34,21 @@ const Letter = ({ letter }) => {
 		} else {
 			if (letter === '⌫' && guessWord !== '') {
 				dispatch(addLetter('BACKSPACE'));
-			} else {
-				dispatch(addLetter(letter === '⌫' ? 'BACKSPACE' : letter));
+			}
+			if (letter !== '⌫') {
+				dispatch(addLetter(letter));
 			}
 		}
 	};
 
+	useEffect(() => {
+		if (color !== '#6ba964') {
+			setColor(getCardColor(letter, searchWord, col));
+		}
+	}, [col, color, lastWord, letter, searchWord, used]);
+
 	const backgroundColor = (theme) =>
-		used
-			? getCardColor(letter, searchWord, col, lastWord)
-			: dark
-			? theme.colors.gray[6]
-			: theme.colors.gray[3];
+		used ? color : dark ? theme.colors.gray[6] : theme.colors.gray[3];
 
 	const letterStyle = (theme) => ({
 		backgroundColor: backgroundColor(theme),
