@@ -2,11 +2,12 @@ import { Group, Space } from '@mantine/core';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
 import { useSubmit } from '../../hooks/useSubmit';
 import { useWords } from '../../hooks/useWords';
-import ErrorModal from './ErrorModal';
-import keys from '../../constants/keys';
-import Letter from './Letter';
 import { finishGame } from '../../redux/actions';
+import keys from '../../constants/keys';
+import ErrorModal from './ErrorModal';
 import { useEffect } from 'react';
+import Letter from './Letter';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const Keyboard = () => {
 	const {
@@ -27,7 +28,14 @@ const Keyboard = () => {
 		}
 	}, [gridWords, searchWord, dispatch]);
 
+	const [storedValue, setValue] = useLocalStorage('GRID', []);
 
+	useEffect(() => {
+		const newWords = [...storedValue];
+		gridWords[gridWords.length - 1] !== undefined &&
+			newWords.push(gridWords[gridWords.length - 1]);
+		setValue(newWords);
+	}, [gridWords]);
 
 	return (
 		<>

@@ -7,11 +7,20 @@ import {
 } from '../actions/types';
 import { words } from '../../constants/words';
 
+/*
+			// Get from local storage by key
+			const item = window.localStorage.getItem(key);
+			// Parse stored json or if none return initialValue
+			return item ? JSON.parse(item) : initialValue;
+*/
+
 const initialState = {
 	end: false,
 	searchWord: 'TEETH',
 	guessWord: '',
-	gridWords: [],
+	gridWords: window.localStorage.getItem('GRID')
+		? JSON.parse(window.localStorage.getItem('GRID'))
+		: [],
 	error: '',
 	dark:
 		window.matchMedia &&
