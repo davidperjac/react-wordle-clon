@@ -5,12 +5,16 @@ import { Center, Title } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
 const Card = ({ col, row }) => {
-	const { dark } = useTheme();
-	const { gridWords, guessWord, searchWord } = useWords();
+	const [background, setBackground] = useState('none');
 	const [scale, setScale] = useState('scale(1.1)');
 
-	const content =
-		row === gridWords.length ? guessWord[col] : gridWords[row]?.charAt(col);
+	const { gridWords, guessWord, searchWord } = useWords();
+	const { dark } = useTheme();
+
+	const isActive = row === gridWords.length;
+	const color = getCardColor(gridWords[row]?.charAt(col), searchWord, col);
+	const content = isActive ? guessWord[col] : gridWords[row]?.charAt(col);
+	const hasContent = content !== undefined;
 
 	useEffect(() => {
 		setTimeout(function () {
@@ -21,21 +25,32 @@ const Card = ({ col, row }) => {
 		};
 	}, [content]);
 
+	useEffect(() => {
+		setTimeout(function () {
+			!isActive && setBackground(color);
+		}, 200 * (col + 1));
+	}, [col, gridWords, row, searchWord, color, isActive]);
+
+	const border =
+		!isActive && hasContent && background !== 'none'
+			? color
+			: hasContent && !dark
+			? '2px solid #495057'
+			: '2px solid #CED4DA';
+
+	const colorStyle = dark
+		? 'white'
+		: !isActive && background !== 'none'
+		? 'white'
+		: 'black';
+
 	const cardStyling = {
 		width: 60,
 		height: 60,
-		border:
-			row !== gridWords.length && content !== undefined
-				? getCardColor(gridWords[row]?.charAt(col), searchWord, col)
-				: content !== undefined && !dark
-				? '2px solid #495057'
-				: '2px solid #CED4DA',
-		backgroundColor:
-			row !== gridWords.length
-				? getCardColor(gridWords[row]?.charAt(col), searchWord, col)
-				: 'none',
-		color: dark ? 'white' : row === gridWords.length ? 'black' : 'white',
-		transform: content !== undefined && scale,
+		border: border,
+		backgroundColor: !isActive ? background : 'none',
+		color: colorStyle,
+		transform: hasContent && scale,
 		transition: 'background-color 0.8s , transform 0.2s',
 	};
 

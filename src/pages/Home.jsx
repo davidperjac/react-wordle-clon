@@ -1,4 +1,4 @@
-import EndModal from '../components/End/EndModal';
+import EndModal from '../components/END/EndModal';
 import Keyboard from '../components/Keyboard/Keyboard';
 import Header from '../components/Header/Header';
 import { Space, Group } from '@mantine/core';

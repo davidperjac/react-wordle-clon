@@ -7,16 +7,9 @@ import {
 } from '../actions/types';
 import { words } from '../../constants/words';
 
-/*
-			// Get from local storage by key
-			const item = window.localStorage.getItem(key);
-			// Parse stored json or if none return initialValue
-			return item ? JSON.parse(item) : initialValue;
-*/
-
 const initialState = {
 	end: false,
-	searchWord: 'TEETH',
+	searchWord: words[Math.floor(Math.random() * words.length)],
 	guessWord: '',
 	gridWords: window.localStorage.getItem('GRID')
 		? JSON.parse(window.localStorage.getItem('GRID'))
