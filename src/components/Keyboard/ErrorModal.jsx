@@ -7,6 +7,11 @@ const ErrorModal = () => {
 	const dispatch = useDispatch();
 	const error = useSelector((state) => state.error);
 	const open = useSelector((state) => state.error).length > 0;
+
+	setTimeout(function () {
+		dispatch(setError(''));
+	}, 5000);
+
 	return (
 		<Modal
 			opened={open}

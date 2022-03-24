@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 
 const Card = ({ col, row }) => {
 	const [background, setBackground] = useState('none');
+	const [flip, setFlip] = useState('rotateY(180deg)');
 	const [scale, setScale] = useState('scale(1.1)');
 
 	const { gridWords, guessWord, searchWord } = useWords();
@@ -29,7 +30,17 @@ const Card = ({ col, row }) => {
 		setTimeout(function () {
 			!isActive && setBackground(color);
 		}, 200 * (col + 1));
-	}, [col, gridWords, row, searchWord, color, isActive]);
+	}, [col, gridWords, searchWord, color, isActive]);
+
+	useEffect(() => {
+		setTimeout(function () {
+			setFlip('rotateY(0deg)');
+		}, 200 * (col + 1));
+		return () => {
+			setFlip('rotateY(180deg)');
+			setBackground('none');
+		};
+	}, [isActive, col]);
 
 	const border =
 		!isActive && hasContent && background !== 'none'
@@ -45,13 +56,13 @@ const Card = ({ col, row }) => {
 		: 'black';
 
 	const cardStyling = {
-		width: 60,
-		height: 60,
-		border: border,
+		transform: hasContent && scale && !isActive && flip,
+		transition: 'background-color 0.8s , transform 0.2s',
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
-		transform: hasContent && scale,
-		transition: 'background-color 0.8s , transform 0.2s',
+		border: border,
+		height: 60,
+		width: 60,
 	};
 
 	return (
