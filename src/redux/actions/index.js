@@ -1,4 +1,10 @@
-import { ADD_LETTER, SEND_WORD, SET_ERROR, CHANGE_THEME } from './types';
+import {
+	ADD_LETTER,
+	SEND_WORD,
+	SET_ERROR,
+	CHANGE_THEME,
+	FINISH_GAME,
+} from './types';
 
 export const addLetter = (payload) => ({
 	type: ADD_LETTER,
@@ -16,4 +22,8 @@ export const setError = (payload) => ({
 
 export const changeTheme = () => ({
 	type: CHANGE_THEME,
+});
+
+export const finishGame = () => ({
+	type: FINISH_GAME,
 });

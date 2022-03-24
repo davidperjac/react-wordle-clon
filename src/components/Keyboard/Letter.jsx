@@ -40,7 +40,7 @@ const Letter = ({ letter }) => {
 
 	const backgroundColor = (theme) =>
 		used
-			? getCardColor(letter, searchWord, col)
+			? getCardColor(letter, searchWord, col, lastWord)
 			: dark
 			? theme.colors.gray[6]
 			: theme.colors.gray[3];

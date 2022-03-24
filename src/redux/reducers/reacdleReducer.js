@@ -3,10 +3,11 @@ import {
 	CHANGE_THEME,
 	SEND_WORD,
 	SET_ERROR,
+	FINISH_GAME,
 } from '../actions/types';
 
 const initialState = {
-	victory: false,
+	end: false,
 	searchWord: 'ADULT',
 	guessWord: '',
 	gridWords: [],
@@ -43,6 +44,11 @@ export const reacdleReducer = (state = initialState, action) => {
 			return {
 				...state,
 				dark: !state.dark,
+			};
+		case FINISH_GAME:
+			return {
+				...state,
+				end: !state.end,
 			};
 		default:
 			return { ...state };
