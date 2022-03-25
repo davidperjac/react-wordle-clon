@@ -1,7 +1,7 @@
 const getIndexes = (word, letter) =>
 	[...word.matchAll(new RegExp(letter, 'gi'))].map((a) => a.index);
 
-export const getCardColor = (letter, word, col) => {
+export const getCardColor = (letter, word, col, darkMode) => {
 	const indexes = getIndexes(word, letter);
 
 	if (letter !== undefined) {
@@ -10,6 +10,6 @@ export const getCardColor = (letter, word, col) => {
 		} else if (word.includes(letter)) {
 			return '#c8b458';
 		}
-		return '#495057';
+		return darkMode ? '#2C2E33' : '#868E96';
 	}
 };

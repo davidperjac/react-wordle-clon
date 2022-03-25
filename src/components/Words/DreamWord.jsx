@@ -4,7 +4,7 @@ import InfoCard from '../Header/InfoCard';
 const DreamWord = () => {
 	return (
 		<>
-			<Group spacing="xs">
+			<Group spacing="xss">
 				<InfoCard letter="D" />
 				<InfoCard letter="R" />
 				<InfoCard letter="E" />

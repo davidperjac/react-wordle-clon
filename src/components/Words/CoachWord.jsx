@@ -4,7 +4,7 @@ import InfoCard from '../Header/InfoCard';
 const CoachWord = () => {
 	return (
 		<>
-			<Group spacing="xs">
+			<Group spacing="xss">
 				<InfoCard letter="C" />
 				<InfoCard
 					letter="O"

@@ -1,16 +1,18 @@
 import { Group, Title, ThemeIcon, Modal } from '@mantine/core';
 import { useSelector, useDispatch } from 'react-redux';
-import { MdError } from 'react-icons/md';
 import { setError } from '../../redux/actions';
+import { MdError } from 'react-icons/md';
 
 const ErrorModal = () => {
-	const dispatch = useDispatch();
-	const error = useSelector((state) => state.error);
 	const open = useSelector((state) => state.error).length > 0;
+	const error = useSelector((state) => state.error);
+	const dispatch = useDispatch();
 
-	setTimeout(function () {
-		dispatch(setError(''));
-	}, 5000);
+	if (open) {
+		setTimeout(function () {
+			dispatch(setError(''));
+		}, 3000);
+	}
 
 	return (
 		<Modal

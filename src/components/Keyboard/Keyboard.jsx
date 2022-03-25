@@ -1,12 +1,14 @@
 import { Group, Space } from '@mantine/core';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
 import { useSubmit } from '../../hooks/useSubmit';
-import { useWords } from '../../hooks/useWords';
 import { finishGame } from '../../redux/actions';
+import { useWords } from '../../hooks/useWords';
+import { useMediaQuery } from '@mantine/hooks';
 import keys from '../../constants/keys';
 import ErrorModal from './ErrorModal';
 import { useEffect } from 'react';
 import Letter from './Letter';
+
 //import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const Keyboard = () => {
@@ -19,6 +21,7 @@ const Keyboard = () => {
 		guessWord,
 	} = useWords();
 	const { key, setKey } = useKeyboardPress();
+	const isMobile = useMediaQuery('(max-width: 768px)');
 
 	useSubmit(key, setKey, dispatch, isShort, isNotDictionary, guessWord);
 
@@ -37,6 +40,7 @@ const Keyboard = () => {
 	// 	setValue(newWords);
 	// }, [gridWords]);
 
+
 	return (
 		<>
 			<ErrorModal />
@@ -44,7 +48,7 @@ const Keyboard = () => {
 				{keys.map((row, rowIndex) => {
 					return (
 						<Group spacing="xssT" key={rowIndex}>
-							{rowIndex > 0 && <Space w="lg" />}
+							{rowIndex > 0 && <Space w={isMobile ? 'md' : 'lg'} />}
 							{row.map((letter, letterIndex) => {
 								return (
 									rowIndex < 3 && <Letter letter={letter} key={letterIndex} />

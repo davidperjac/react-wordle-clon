@@ -3,7 +3,7 @@ import { useWords } from '../../hooks/useWords';
 import { useSelector } from 'react-redux';
 import { finishGame } from '../../redux/actions';
 
-const EndModal = ({ setEndModal }) => {
+const EndModal = () => {
 	const { dispatch, searchWord } = useWords();
 	const endModal = useSelector((state) => state.end);
 
@@ -16,8 +16,10 @@ const EndModal = ({ setEndModal }) => {
 			onClose={() => dispatch(finishGame())}
 			title="REACTDLE"
 			size="md"
+			trapFocus={false}
 			styles={{
 				title: { fontWeight: '800' },
+				transform: 'translateZ(1000px)',
 			}}
 		>
 			<Group>

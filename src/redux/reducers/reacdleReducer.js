@@ -9,7 +9,7 @@ import { words } from '../../constants/words';
 
 const initialState = {
 	end: false,
-	searchWord: words[Math.floor(Math.random() * words.length)],
+	searchWord: 'TEETH',
 	guessWord: '',
 	gridWords: window.localStorage.getItem('GRID')
 		? JSON.parse(window.localStorage.getItem('GRID'))

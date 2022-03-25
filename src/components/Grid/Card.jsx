@@ -1,12 +1,15 @@
 import { getCardColor } from '../../utils/getCardColor';
+import { getBrowser } from '../../utils/getBrowser';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
 import { Center, Title } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
-const Card = ({ col, row }) => {
+const Card = ({ row, col }) => {
+	const browser = getBrowser();
+
 	const [background, setBackground] = useState('none');
-	const [flip, setFlip] = useState('rotateY(180deg)');
+	const [flip, setFlip] = useState(browser !== 'safari' && 'rotateY(180deg)');
 	const [scale, setScale] = useState('scale(1.1)');
 
 	const { gridWords, guessWord, searchWord } = useWords();
@@ -34,13 +37,13 @@ const Card = ({ col, row }) => {
 
 	useEffect(() => {
 		setTimeout(function () {
-			setFlip('rotateY(0deg)');
+			setFlip(browser !== 'safari' && 'rotateY(0deg)');
 		}, 200 * (col + 1));
 		return () => {
-			setFlip('rotateY(180deg)');
+			setFlip(browser !== 'safari' && 'rotateY(180deg)');
 			setBackground('none');
 		};
-	}, [isActive, col]);
+	}, [isActive, col, browser]);
 
 	const border =
 		!isActive && hasContent && background !== 'none'
@@ -56,8 +59,10 @@ const Card = ({ col, row }) => {
 		: 'black';
 
 	const cardStyling = {
-		transform: hasContent && scale && !isActive && flip,
+		transform:
+			(hasContent && !isActive && flip) || (hasContent && isActive && scale),
 		transition: 'background-color 0.8s , transform 0.2s',
+		transitionDelay: '1ms',
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
 		border: border,

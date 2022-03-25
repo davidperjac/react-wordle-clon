@@ -1,9 +1,10 @@
-import { Center, Title } from '@mantine/core';
 import { addLetter, sendWord, setError } from '../../redux/actions';
-import { useWords } from '../../hooks/useWords';
-import { getCardColor } from '../../utils/getCardColor';
 import { isLetterUsed } from '../../utils/isLetterUsed';
+import { getCardColor } from '../../utils/getCardColor';
+import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
+import { Center, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 
 const Letter = ({ letter }) => {
@@ -20,7 +21,10 @@ const Letter = ({ letter }) => {
 
 	const col = lastWord?.indexOf(letter);
 	const used = isLetterUsed(gridWords, letter);
-	const [color, setColor] = useState(getCardColor(letter, searchWord, col));
+	const [color, setColor] = useState(
+		getCardColor(letter, searchWord, col, dark)
+	);
+	const isMobile = useMediaQuery('(max-width: 768px)');
 
 	const handleClick = () => {
 		if (letter === '⏎') {
@@ -43,17 +47,17 @@ const Letter = ({ letter }) => {
 
 	useEffect(() => {
 		if (color !== '#6ba964') {
-			setColor(getCardColor(letter, searchWord, col));
+			setColor(getCardColor(letter, searchWord, col, dark));
 		}
-	}, [col, color, lastWord, letter, searchWord, used]);
+	}, [col, color, lastWord, letter, searchWord, used, dark]);
 
 	const backgroundColor = (theme) =>
-		used ? color : dark ? theme.colors.gray[6] : theme.colors.gray[3];
+		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
 
 	const letterStyle = (theme) => ({
 		backgroundColor: backgroundColor(theme),
 		cursor: 'pointer',
-		width: 45,
+		width: isMobile ? 37 : 45,
 		height: 50,
 		borderRadius: '5px',
 		color: dark || (used && !searchWord.includes(letter)) ? 'white' : 'black',

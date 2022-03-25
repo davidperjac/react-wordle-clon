@@ -19,7 +19,7 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 		>
 			<Group>
 				<Text size="md" weight={500}>
-					Guess the WORDLE in six tries. Each guess must be a valid five-letter
+					Guess the REACDLE in six tries. Each guess must be a valid five-letter
 					word.
 				</Text>
 				<Text size="md" weight={500}>
