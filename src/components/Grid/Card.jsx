@@ -23,9 +23,9 @@ const Card = ({ row, col }) => {
 	useEffect(() => {
 		setTimeout(function () {
 			setScale('scale(1)');
-		}, 100);
+		}, 50);
 		return () => {
-			setScale('scale(1.1)');
+			setScale('scale(1.3)');
 		};
 	}, [content]);
 

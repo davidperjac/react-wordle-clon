@@ -4,6 +4,7 @@ import CoachWord from '../Words/CoachWord';
 import DreamWord from '../Words/DreamWord';
 
 const InfoModal = ({ infoModal, setInfoModal }) => {
+	const linkStyle = { textDecoration: 'none', color: '#6ba964', weight: 800 };
 	return (
 		<Modal
 			transition="scale-y"
@@ -34,6 +35,20 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 				<DreamWord />
 				<Text size="md" weight={800}>
 					A new REACDLE will be available each day!
+				</Text>
+				<Text size="sm" weight={600}>
+					This is an adaptation of
+					<a
+						href="https://www.nytimes.com/games/wordle/index.html"
+						style={linkStyle}
+					>
+						{' '}
+						Wordle{' '}
+					</a>
+					by{' '}
+					<a href="https://twitter.com/powerlanguish?lang=es" style={linkStyle}>
+						Josh Wordle
+					</a>
 				</Text>
 			</Group>
 		</Modal>

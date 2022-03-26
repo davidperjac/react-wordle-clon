@@ -1,5 +1,8 @@
 import Row from './Row';
 import { Group } from '@mantine/core';
+import { useEffect } from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useWords } from '../../hooks/useWords';
 
 const Grid = () => {
 	return (

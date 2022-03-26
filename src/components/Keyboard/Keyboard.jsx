@@ -31,16 +31,6 @@ const Keyboard = () => {
 		}
 	}, [gridWords, searchWord, dispatch]);
 
-	// const [storedValue, setValue] = useLocalStorage('GRID', []);
-
-	// useEffect(() => {
-	// 	const newWords = [...storedValue];
-	// 	gridWords[gridWords.length - 1] !== undefined &&
-	// 		newWords.push(gridWords[gridWords.length - 1]);
-	// 	setValue(newWords);
-	// }, [gridWords]);
-
-
 	return (
 		<>
 			<ErrorModal />

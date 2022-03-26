@@ -1,4 +1,4 @@
-import EndModal from '../components/END/EndModal';
+import EndModal from '../components/End/EndModal';
 import Keyboard from '../components/Keyboard/Keyboard';
 import Header from '../components/Header/Header';
 import { Space, Group } from '@mantine/core';
@@ -9,7 +9,7 @@ const Home = () => {
 		<Group direction="column" position="center">
 			<EndModal />
 			<Header />
-			<Space h="xss" />
+			<Space h="md" />
 			<Grid />
 			<Space h="xs" />
 			<Keyboard />

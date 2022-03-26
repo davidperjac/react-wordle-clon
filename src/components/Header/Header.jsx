@@ -2,13 +2,13 @@ import { Group } from '@mantine/core';
 import InfoButton from './InfoButton';
 import StatsButton from './StatsButton';
 import ThemeButton from './ThemeButton';
+import GithubButton from './GithubButton';
 import Name from './Name';
-
-//TODO: ADD DARK MODE Y STATS MODAL
 
 const Header = () => {
 	return (
-		<Group position="center" spacing="xl">
+		<Group position="center" spacing="md">
+			<GithubButton />
 			<InfoButton />
 			<Name />
 			<StatsButton />

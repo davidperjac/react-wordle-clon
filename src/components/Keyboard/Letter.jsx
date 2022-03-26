@@ -1,4 +1,5 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { isLetterUsed } from '../../utils/isLetterUsed';
 import { getCardColor } from '../../utils/getCardColor';
 import { useWords } from '../../hooks/useWords';
@@ -25,22 +26,25 @@ const Letter = ({ letter }) => {
 		getCardColor(letter, searchWord, col, dark)
 	);
 	const isMobile = useMediaQuery('(max-width: 768px)');
+	const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
 
 	const handleClick = () => {
-		if (letter === '⏎') {
-			if (isShort) {
-				dispatch(setError('Not Enough Letters!!'));
-			} else if (isNotDictionary) {
-				dispatch(setError('Not In Word List!!'));
+		if (victoryWord === '') {
+			if (letter === '⏎') {
+				if (isShort) {
+					dispatch(setError('Not Enough Letters!!'));
+				} else if (isNotDictionary) {
+					dispatch(setError('Not In Word List!!'));
+				} else {
+					dispatch(sendWord());
+				}
 			} else {
-				dispatch(sendWord());
-			}
-		} else {
-			if (letter === '⌫' && guessWord !== '') {
-				dispatch(addLetter('BACKSPACE'));
-			}
-			if (letter !== '⌫') {
-				dispatch(addLetter(letter));
+				if (letter === '⌫' && guessWord !== '') {
+					dispatch(addLetter('BACKSPACE'));
+				}
+				if (letter !== '⌫') {
+					dispatch(addLetter(letter));
+				}
 			}
 		}
 	};

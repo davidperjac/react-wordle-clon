@@ -6,10 +6,11 @@ import {
 	FINISH_GAME,
 } from '../actions/types';
 import { words } from '../../constants/words';
+import { getDayOfYear } from '../../utils/getDayOfYear';
 
 const initialState = {
 	end: false,
-	searchWord: 'TEETH',
+	searchWord: 'FORTH',
 	guessWord: '',
 	gridWords: window.localStorage.getItem('GRID')
 		? JSON.parse(window.localStorage.getItem('GRID'))

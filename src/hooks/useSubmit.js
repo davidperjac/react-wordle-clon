@@ -1,4 +1,6 @@
 import { addLetter, sendWord, setError } from '../redux/actions';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useWords } from '../hooks/useWords';
 import { useEffect } from 'react';
 
 export const useSubmit = (
@@ -9,8 +11,12 @@ export const useSubmit = (
 	isNotDictionary,
 	guessWord
 ) => {
+	const { gridWords } = useWords();
+	const [, setStoredWords] = useLocalStorage('GRID', []);
+	const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
+
 	useEffect(() => {
-		if (key !== '') {
+		if (key !== '' && victoryWord === '') {
 			if (key === 'ENTER') {
 				if (isShort) {
 					dispatch(setError('Not Enough Letters!!'));
@@ -30,5 +36,18 @@ export const useSubmit = (
 		return () => {
 			setKey('');
 		};
-	}, [dispatch, setKey, key, isShort, isNotDictionary, guessWord]);
+	}, [
+		dispatch,
+		setKey,
+		key,
+		isShort,
+		isNotDictionary,
+		guessWord,
+		gridWords,
+		setStoredWords,
+	]);
+	useEffect(() => {
+		setStoredWords(gridWords);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [gridWords]);
 };
