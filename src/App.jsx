@@ -1,15 +1,15 @@
-import Home from './pages/Home';
 import { MantineProvider } from '@mantine/core';
-import { useSelector } from 'react-redux';
+import { useTheme } from './hooks/useTheme';
+import Home from './pages/Home';
 
 function App() {
-	const theme = useSelector((state) => state.dark);
+	const { dark } = useTheme();
 	const styles = {
 		spacing: {
 			xss: 5,
 			xssT: 3,
 		},
-		colorScheme: theme ? 'dark' : 'light',
+		colorScheme: dark ? 'dark' : 'light',
 	};
 	return (
 		<MantineProvider withGlobalStyles theme={styles}>

@@ -1,8 +1,8 @@
+import { useTheme } from '../../hooks/useTheme';
 import { Title } from '@mantine/core';
-import { useSelector } from 'react-redux';
 
 const Name = () => {
-	const dark = useSelector((state) => state.dark);
+	const { dark } = useTheme();
 	return (
 		<Title
 			order={1}

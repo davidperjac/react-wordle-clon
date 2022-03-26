@@ -1,15 +1,16 @@
 import { HiSun } from 'react-icons/hi';
 import { RiMoonClearFill } from 'react-icons/ri';
-import { ActionIcon } from '@mantine/core';
-//import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { changeTheme } from '../../redux/actions';
 import { useTheme } from '../../hooks/useTheme';
+import { ActionIcon } from '@mantine/core';
 
 const ThemeButton = () => {
 	const { dark, dispatch } = useTheme();
-	//] = useLocalStorage('THEME', null);
+	const [, setDarkStorage] = useLocalStorage('THEME', '');
 
 	const handleClick = () => {
+		setDarkStorage(!dark);
 		dispatch(changeTheme());
 	};
 

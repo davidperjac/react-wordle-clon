@@ -1,15 +1,14 @@
-import { Group, Space } from '@mantine/core';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useSubmit } from '../../hooks/useSubmit';
 import { finishGame } from '../../redux/actions';
 import { useWords } from '../../hooks/useWords';
 import { useMediaQuery } from '@mantine/hooks';
+import { Group, Space } from '@mantine/core';
 import keys from '../../constants/keys';
 import ErrorModal from './ErrorModal';
 import { useEffect } from 'react';
 import Letter from './Letter';
-
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const Keyboard = () => {
 	const [victoryWord] = useLocalStorage('VICTORY_WORD', '');

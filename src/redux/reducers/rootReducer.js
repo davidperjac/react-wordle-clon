@@ -1,16 +1,12 @@
-import { combineReducers } from 'redux';
-import addLetterReducer from './addLetterReducer';
 import changeThemeReducer from './changeThemeReducer';
 import finishGameReducer from './finishGameReducer';
-import sendWordReducer from './sendWordReducer';
 import setErrorReducer from './setErrorReducer';
-import searchWordReducer from './searchWordReducer';
+import wordsReducer from './wordsReducer';
+import { combineReducers } from 'redux';
 
 export const rootReducer = combineReducers({
 	end: finishGameReducer,
-	searchWord: searchWordReducer,
-	guessWord: addLetterReducer,
-	gridWords: sendWordReducer,
+	words: wordsReducer,
 	error: setErrorReducer,
 	dark: changeThemeReducer,
 });
