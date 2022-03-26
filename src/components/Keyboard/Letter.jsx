@@ -4,8 +4,8 @@ import { isLetterUsed } from '../../utils/isLetterUsed';
 import { getCardColor } from '../../utils/getCardColor';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
-import { Center, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { Center, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
 const Letter = ({ letter }) => {
@@ -17,16 +17,13 @@ const Letter = ({ letter }) => {
 		searchWord,
 		guessWord,
 	} = useWords();
-	const lastWord = gridWords[gridWords.length - 1];
 	const { dark } = useTheme();
-
-	const col = lastWord?.indexOf(letter);
 	const used = isLetterUsed(gridWords, letter);
-	const [color, setColor] = useState(
-		getCardColor(letter, searchWord, col, dark)
-	);
+	const [color, setColor] = useState(null);
+
+	//const color = getCardColor(gridWords[row]?.charAt(col), searchWord, col);
+
 	const isMobile = useMediaQuery('(max-width: 768px)');
-	//const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
 
 	const handleClick = () => {
 		if (letter === '⏎') {
@@ -47,11 +44,20 @@ const Letter = ({ letter }) => {
 		}
 	};
 
+	// useEffect(() => {
+	// 	if (used && col !== -1) {
+	// 		setColor(getCardColor(letter, searchWord, col, dark));
+	// 	}
+	// }, [used, color, letter, searchWord, dark]);
+
 	useEffect(() => {
-		if (color !== '#6ba964') {
-			setColor(getCardColor(letter, searchWord, col, dark));
+		for (let word of gridWords) {
+			const col = word.indexOf(letter);
+			if (used && col !== -1) {
+				setColor(getCardColor(letter, searchWord, word.indexOf(letter), dark));
+			}
 		}
-	}, [col, color, letter, searchWord, dark]);
+	}, [used, gridWords, letter, searchWord, dark]);
 
 	const backgroundColor = (theme) =>
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
