@@ -20,9 +20,10 @@ export const useSubmit = (key, setKey) => {
 					dispatch(sendWord());
 				}
 			} else {
-				if (key === 'BACKSPACE' && guessWord !== '') {
-					dispatch(addLetter(key === '⌫' ? 'BACKSPACE' : key));
-				} else {
+				if (key === 'BACKSPACE' && guessWord.length > 0) {
+					dispatch(addLetter('BACKSPACE'));
+				}
+				if (key !== 'BACKSPACE' && guessWord.length < 5) {
 					dispatch(addLetter(key));
 				}
 			}

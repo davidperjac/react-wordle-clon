@@ -17,6 +17,7 @@ const EndModal = () => {
 			title="REACTDLE"
 			size="md"
 			trapFocus={false}
+			closeOnEscape={false}
 			styles={{
 				title: { fontWeight: '800' },
 			}}

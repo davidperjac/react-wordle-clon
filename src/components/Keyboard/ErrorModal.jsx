@@ -1,18 +1,19 @@
 import { Group, Title, ThemeIcon, Modal } from '@mantine/core';
-import { useSelector, useDispatch } from 'react-redux';
+import { useError } from '../../hooks/useError';
 import { setError } from '../../redux/actions';
 import { MdError } from 'react-icons/md';
+import { useEffect } from 'react';
 
 const ErrorModal = () => {
-	const open = useSelector((state) => state.error).length > 0;
-	const error = useSelector((state) => state.error);
-	const dispatch = useDispatch();
+	const { error, open, dispatch } = useError();
 
-	if (open) {
-		setTimeout(function () {
-			dispatch(setError(''));
-		}, 3000);
-	}
+	useEffect(() => {
+		if (open) {
+			setTimeout(function () {
+				dispatch(setError(''));
+			}, 3000);
+		}
+	}, [dispatch, open]);
 
 	return (
 		<Modal
@@ -24,6 +25,7 @@ const ErrorModal = () => {
 			size="xss"
 			withCloseButton={false}
 			trapFocus={false}
+			closeOnEscape={false}
 			styles={{
 				modal: {
 					backgroundColor: '#FA5252',

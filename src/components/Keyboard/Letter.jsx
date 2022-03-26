@@ -1,5 +1,5 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+//import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { isLetterUsed } from '../../utils/isLetterUsed';
 import { getCardColor } from '../../utils/getCardColor';
 import { useWords } from '../../hooks/useWords';
@@ -26,25 +26,23 @@ const Letter = ({ letter }) => {
 		getCardColor(letter, searchWord, col, dark)
 	);
 	const isMobile = useMediaQuery('(max-width: 768px)');
-	const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
+	//const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
 
 	const handleClick = () => {
-		if (victoryWord === '') {
-			if (letter === '⏎') {
-				if (isShort) {
-					dispatch(setError('Not Enough Letters!!'));
-				} else if (isNotDictionary) {
-					dispatch(setError('Not In Word List!!'));
-				} else {
-					dispatch(sendWord());
-				}
+		if (letter === '⏎') {
+			if (isShort) {
+				dispatch(setError('Not Enough Letters!!'));
+			} else if (isNotDictionary) {
+				dispatch(setError('Not In Word List!!'));
 			} else {
-				if (letter === '⌫' && guessWord !== '') {
-					dispatch(addLetter('BACKSPACE'));
-				}
-				if (letter !== '⌫') {
-					dispatch(addLetter(letter));
-				}
+				dispatch(sendWord());
+			}
+		} else {
+			if (letter === '⌫' && guessWord !== '') {
+				dispatch(addLetter('BACKSPACE'));
+			}
+			if (letter !== '⌫' && guessWord.length !== 5) {
+				dispatch(addLetter(letter));
 			}
 		}
 	};
@@ -53,7 +51,7 @@ const Letter = ({ letter }) => {
 		if (color !== '#6ba964') {
 			setColor(getCardColor(letter, searchWord, col, dark));
 		}
-	}, [col, color, lastWord, letter, searchWord, used, dark]);
+	}, [col, color, letter, searchWord, dark]);
 
 	const backgroundColor = (theme) =>
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
@@ -62,7 +60,7 @@ const Letter = ({ letter }) => {
 		color: dark || (used && !searchWord.includes(letter)) ? 'white' : 'black',
 		backgroundColor: backgroundColor(theme),
 		width: isMobile ? 37 : 45,
-		borderRadius: '5px',
+		borderRadius: '10px',
 		cursor: 'pointer',
 		height: 50,
 	});
