@@ -59,12 +59,12 @@ const Letter = ({ letter }) => {
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
 
 	const letterStyle = (theme) => ({
-		backgroundColor: backgroundColor(theme),
-		cursor: 'pointer',
-		width: isMobile ? 37 : 45,
-		height: 50,
-		borderRadius: '5px',
 		color: dark || (used && !searchWord.includes(letter)) ? 'white' : 'black',
+		backgroundColor: backgroundColor(theme),
+		width: isMobile ? 37 : 45,
+		borderRadius: '5px',
+		cursor: 'pointer',
+		height: 50,
 	});
 
 	return (

@@ -8,7 +8,7 @@ export const useWords = () => {
 	const isNotDictionary = !words.includes(guessWord);
 	const gridWords = useSelector((state) => state.gridWords);
 	const searchWord = useSelector((state) => state.searchWord);
-
+	
 	return {
 		dispatch,
 		guessWord,

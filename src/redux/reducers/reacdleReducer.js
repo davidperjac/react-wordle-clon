@@ -4,13 +4,14 @@ import {
 	SEND_WORD,
 	SET_ERROR,
 	FINISH_GAME,
+	CLEAN_WORDS,
 } from '../actions/types';
 import { words } from '../../constants/words';
 import { getDayOfYear } from '../../utils/getDayOfYear';
 
 const initialState = {
 	end: false,
-	searchWord: 'FORTH',
+	searchWord: words[getDayOfYear()],
 	guessWord: '',
 	gridWords: window.localStorage.getItem('GRID')
 		? JSON.parse(window.localStorage.getItem('GRID'))
@@ -53,6 +54,11 @@ export const reacdleReducer = (state = initialState, action) => {
 			return {
 				...state,
 				end: !state.end,
+			};
+		case CLEAN_WORDS:
+			return {
+				...state,
+				gridWords: [],
 			};
 		default:
 			return { ...state };

@@ -3,20 +3,14 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useWords } from '../hooks/useWords';
 import { useEffect } from 'react';
 
-export const useSubmit = (
-	key,
-	setKey,
-	dispatch,
-	isShort,
-	isNotDictionary,
-	guessWord
-) => {
-	const { gridWords } = useWords();
+export const useSubmit = (key, setKey) => {
+	const [victoryWord] = useLocalStorage('VICTORY_WORD');
 	const [, setStoredWords] = useLocalStorage('GRID', []);
-	const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
+	const { dispatch, gridWords, isShort, isNotDictionary, guessWord } =
+		useWords();
 
 	useEffect(() => {
-		if (key !== '' && victoryWord === '') {
+		if (key !== '') {
 			if (key === 'ENTER') {
 				if (isShort) {
 					dispatch(setError('Not Enough Letters!!'));
@@ -45,6 +39,7 @@ export const useSubmit = (
 		guessWord,
 		gridWords,
 		setStoredWords,
+		victoryWord,
 	]);
 	useEffect(() => {
 		setStoredWords(gridWords);

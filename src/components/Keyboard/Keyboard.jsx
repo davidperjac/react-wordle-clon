@@ -9,27 +9,27 @@ import ErrorModal from './ErrorModal';
 import { useEffect } from 'react';
 import Letter from './Letter';
 
-//import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const Keyboard = () => {
-	const {
-		dispatch,
-		isShort,
-		isNotDictionary,
-		searchWord,
-		gridWords,
-		guessWord,
-	} = useWords();
-	const { key, setKey } = useKeyboardPress();
+	const [victoryWord] = useLocalStorage('VICTORY_WORD', '');
+	const { dispatch, searchWord, gridWords } = useWords();
 	const isMobile = useMediaQuery('(max-width: 768px)');
+	const { key, setKey } = useKeyboardPress();
 
-	useSubmit(key, setKey, dispatch, isShort, isNotDictionary, guessWord);
+	const isWordIncluded = gridWords.includes(searchWord);
+	const hasWordChanged = victoryWord === searchWord;
+	const isGridFull = gridWords.length === 6;
+
+	useSubmit(key, setKey);
 
 	useEffect(() => {
-		if (gridWords.includes(searchWord) || gridWords.length === 6) {
-			dispatch(finishGame());
-		}
-	}, [gridWords, searchWord, dispatch]);
+		setTimeout(function () {
+			if ((isWordIncluded || isGridFull) && hasWordChanged) {
+				dispatch(finishGame());
+			}
+		}, 3000);
+	}, [dispatch, isWordIncluded, isGridFull, hasWordChanged]);
 
 	return (
 		<>

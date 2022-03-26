@@ -4,6 +4,7 @@ import {
 	SET_ERROR,
 	CHANGE_THEME,
 	FINISH_GAME,
+	CLEAN_WORDS,
 } from './types';
 
 export const addLetter = (payload) => ({
@@ -26,4 +27,8 @@ export const changeTheme = () => ({
 
 export const finishGame = () => ({
 	type: FINISH_GAME,
+});
+
+export const cleanWords = () => ({
+	type: CLEAN_WORDS,
 });
