@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
-import reacdleReducer from './reducers/reacdleReducer';
+import rootReducer from './reducers/rootReducer';
 
 const store = createStore(
-	reacdleReducer,
+	rootReducer,
 	window.__REDUX_DEVTOOLS_EXTENSION__ &&
 		window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true, traceLimit: 25 })
 );

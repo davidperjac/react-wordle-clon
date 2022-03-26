@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const EndModal = () => {
 	const { dispatch, searchWord } = useWords();
-	const endModal = useSelector((state) => state.end);
+	const endModal = useSelector((state) => state.end.end);
 
 	return (
 		<Modal
