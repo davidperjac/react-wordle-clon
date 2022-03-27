@@ -33,7 +33,7 @@ const Card = ({ row, col }) => {
 		setTimeout(function () {
 			!isActive && setBackground(color);
 		}, 200 * (col + 1));
-	}, [col, gridWords, searchWord, color, isActive]);
+	}, [col, color, isActive]);
 
 	useEffect(() => {
 		setTimeout(function () {
@@ -61,7 +61,7 @@ const Card = ({ row, col }) => {
 	const cardStyling = {
 		transform:
 			(hasContent && !isActive && flip) || (hasContent && isActive && scale),
-		transition: 'background-color 0.8s , transform 0.8s , scale 0.2s',
+		transition: 'background-color 0.8s , transform 0.8s',
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
 		border: border,

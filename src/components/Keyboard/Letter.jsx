@@ -1,12 +1,11 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
-//import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { isLetterUsed } from '../../utils/isLetterUsed';
 import { getCardColor } from '../../utils/getCardColor';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
 import { useMediaQuery } from '@mantine/hooks';
 import { Center, Title } from '@mantine/core';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Letter = ({ letter }) => {
 	const {
@@ -20,6 +19,7 @@ const Letter = ({ letter }) => {
 	const { dark } = useTheme();
 	const used = isLetterUsed(gridWords, letter);
 	const [color, setColor] = useState(null);
+	const lastWord = gridWords[gridWords.length - 1];
 
 	//const color = getCardColor(gridWords[row]?.charAt(col), searchWord, col);
 
@@ -51,24 +51,26 @@ const Letter = ({ letter }) => {
 	// }, [used, color, letter, searchWord, dark]);
 
 	useEffect(() => {
-		if (letter === 'O' || letter === 'R') {
-			console.log(color);
-		}
 		for (let word of gridWords) {
 			const col = word.indexOf(letter);
 			if (
 				(color === '#6ba964' && col === -1) ||
-				(color === '#c8b458' && col === -1)
+				searchWord.indexOf(letter) === word.indexOf(letter) ||
+				(color === '#c8b458' && col === -1) ||
+				searchWord.indexOf(letter) === word.indexOf(letter)
 			) {
 				break;
-			}
-			if (used && col !== -1) {
-				setColor(
-					getCardColor(letter, searchWord, word.indexOf(letter), dark, used)
-				);
+			} else if (used && col !== -1) {
+				setColor(getCardColor(letter, searchWord, word.indexOf(letter), dark));
 			}
 		}
-	}, [used, gridWords, letter, searchWord, dark, color]);
+	}, [used, gridWords, letter, searchWord, dark, color, lastWord]);
+
+	/*
+	&& lastWord
+					? col !== lastWord?.indexOf(letter)
+					: true
+	*/
 
 	const backgroundColor = (theme) =>
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
