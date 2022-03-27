@@ -18,10 +18,10 @@ const Letter = ({ letter }) => {
 	} = useWords();
 	const { dark } = useTheme();
 	const used = isLetterUsed(gridWords, letter);
-	const [color, setColor] = useState(null);
 	const lastWord = gridWords[gridWords.length - 1];
-
-	//const color = getCardColor(gridWords[row]?.charAt(col), searchWord, col);
+	const [color, setColor] = useState(
+		getCardColor(letter, searchWord, lastWord?.indexOf(letter), dark)
+	);
 
 	const isMobile = useMediaQuery('(max-width: 768px)');
 
@@ -44,23 +44,18 @@ const Letter = ({ letter }) => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	if (used && col !== -1) {
-	// 		setColor(getCardColor(letter, searchWord, col, dark));
-	// 	}
-	// }, [used, color, letter, searchWord, dark]);
-
 	useEffect(() => {
 		for (let word of gridWords) {
 			const col = word.indexOf(letter);
+			const wasGreen = searchWord.indexOf(letter) !== word.indexOf(letter);
 			if (
-				(color === '#6ba964' && col === -1) ||
-				searchWord.indexOf(letter) === word.indexOf(letter) ||
-				(color === '#c8b458' && col === -1) ||
-				searchWord.indexOf(letter) === word.indexOf(letter)
+				((color === '#6ba964' || color === '#c8b458' || color === '#868E96') &&
+					col === -1) ||
+				wasGreen
 			) {
 				break;
-			} else if (used && col !== -1) {
+			}
+			if (col !== -1) {
 				setColor(getCardColor(letter, searchWord, word.indexOf(letter), dark));
 			}
 		}
