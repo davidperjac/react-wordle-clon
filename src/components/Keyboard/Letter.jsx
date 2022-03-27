@@ -58,8 +58,19 @@ const Letter = ({ letter }) => {
 			if (col !== -1) {
 				setColor(getCardColor(letter, searchWord, word.indexOf(letter), dark));
 			}
+			if (dark && color === '#868E96') {
+				setColor('#2C2E33');
+			}
 		}
 	}, [used, gridWords, letter, searchWord, dark, color, lastWord]);
+
+	useEffect(() => {
+		if (dark && color === '#868E96') {
+			setColor('#2C2E33');
+		} else {
+			setColor('#868E96');
+		}
+	}, [dark]);
 
 	/*
 	&& lastWord
