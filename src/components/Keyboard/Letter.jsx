@@ -6,7 +6,7 @@ import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
 import { useMediaQuery } from '@mantine/hooks';
 import { Center, Title } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Letter = ({ letter }) => {
 	const {
@@ -51,13 +51,24 @@ const Letter = ({ letter }) => {
 	// }, [used, color, letter, searchWord, dark]);
 
 	useEffect(() => {
+		if (letter === 'O' || letter === 'R') {
+			console.log(color);
+		}
 		for (let word of gridWords) {
 			const col = word.indexOf(letter);
+			if (
+				(color === '#6ba964' && col === -1) ||
+				(color === '#c8b458' && col === -1)
+			) {
+				break;
+			}
 			if (used && col !== -1) {
-				setColor(getCardColor(letter, searchWord, word.indexOf(letter), dark));
+				setColor(
+					getCardColor(letter, searchWord, word.indexOf(letter), dark, used)
+				);
 			}
 		}
-	}, [used, gridWords, letter, searchWord, dark]);
+	}, [used, gridWords, letter, searchWord, dark, color]);
 
 	const backgroundColor = (theme) =>
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];

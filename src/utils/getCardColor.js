@@ -3,7 +3,6 @@ const getIndexes = (word, letter) =>
 
 export const getCardColor = (letter, word, col, darkMode) => {
 	const indexes = getIndexes(word, letter);
-
 	if (letter !== undefined) {
 		if (indexes.includes(col)) {
 			return '#6ba964';

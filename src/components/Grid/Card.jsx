@@ -9,7 +9,7 @@ const Card = ({ row, col }) => {
 	const browser = getBrowser();
 
 	const [background, setBackground] = useState('none');
-	const [flip, setFlip] = useState(browser !== 'safari' && 'rotateY(180deg)');
+	const [flip, setFlip] = useState(browser !== 'safari' && 'rotateX(180deg)');
 	const [scale, setScale] = useState('scale(1.1)');
 
 	const { gridWords, guessWord, searchWord } = useWords();
@@ -25,7 +25,7 @@ const Card = ({ row, col }) => {
 			setScale('scale(1)');
 		}, 50);
 		return () => {
-			setScale('scale(1.3)');
+			setScale('scale(2)');
 		};
 	}, [content]);
 
@@ -37,10 +37,10 @@ const Card = ({ row, col }) => {
 
 	useEffect(() => {
 		setTimeout(function () {
-			setFlip(browser !== 'safari' && 'rotateY(0deg)');
+			setFlip(browser !== 'safari' && 'rotateX(0deg)');
 		}, 200 * (col + 1));
 		return () => {
-			setFlip(browser !== 'safari' && 'rotateY(180deg)');
+			setFlip(browser !== 'safari' && 'rotateX(180deg)');
 			setBackground('none');
 		};
 	}, [isActive, col, browser]);
@@ -61,8 +61,7 @@ const Card = ({ row, col }) => {
 	const cardStyling = {
 		transform:
 			(hasContent && !isActive && flip) || (hasContent && isActive && scale),
-		transition: 'background-color 0.8s , transform 0.2s',
-		transitionDelay: '1ms',
+		transition: 'background-color 0.8s , transform 0.8s , scale 0.2s',
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
 		border: border,

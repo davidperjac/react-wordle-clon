@@ -21,11 +21,11 @@ const ErrorModal = () => {
 			overlayOpacity={0}
 			transition="scale"
 			radius="md"
-			onClose={() => dispatch(setError(''))}
 			size="xss"
 			withCloseButton={false}
 			trapFocus={false}
 			closeOnEscape={false}
+			closeOnClickOutside={false}
 			styles={{
 				modal: {
 					backgroundColor: '#FA5252',
