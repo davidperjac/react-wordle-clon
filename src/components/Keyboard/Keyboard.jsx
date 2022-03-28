@@ -1,11 +1,21 @@
 import { useMediaQuery } from '@mantine/hooks';
 import { Group, Space } from '@mantine/core';
+import { encryptWithAES, decryptWithAES } from '../../utils/.codification';
 import keys from '../../constants/keys';
 import ErrorModal from './ErrorModal';
 import Letter from './Letter';
 
 const Keyboard = () => {
 	const isMobile = useMediaQuery('(max-width: 768px)');
+
+	const encryptedText = encryptWithAES('HOLA');
+
+	console.log(encryptedText);
+
+	const decryptedText = decryptWithAES(encryptedText);
+
+	console.log(decryptedText);
+
 	return (
 		<>
 			<ErrorModal />

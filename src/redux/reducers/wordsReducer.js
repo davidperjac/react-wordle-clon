@@ -4,8 +4,8 @@ import { words } from '../../constants/words';
 
 const initialState = {
 	searchWord: words[getDayOfYear()],
-	gridWords: window.localStorage.getItem('GRID')
-		? JSON.parse(window.localStorage.getItem('GRID'))
+	gridWords: window.localStorage.getItem('PLAYER_WORDS')
+		? JSON.parse(window.localStorage.getItem('PLAYER_WORDS'))
 		: [],
 	guessWord: '',
 };

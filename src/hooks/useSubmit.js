@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 export const useSubmit = (key, setKey) => {
 	const [victoryWord] = useLocalStorage('VICTORY_WORD');
-	const [, setStoredWords] = useLocalStorage('GRID', []);
+	const [, setStoredWords] = useLocalStorage('PLAYER_WORDS', []);
 	const { dispatch, gridWords, isShort, isNotDictionary, guessWord } =
 		useWords();
 

@@ -26,7 +26,7 @@ const Grid = () => {
 
 	useEffect(() => {
 		if (searchWord !== victoryWord) {
-			localStorage.removeItem('GRID');
+			localStorage.removeItem('PLAYER_WORDS');
 			dispatch(cleanWords());
 		}
 	}, [searchWord, dispatch, victoryWord]);
