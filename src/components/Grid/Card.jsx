@@ -1,8 +1,10 @@
 import { getCardColor } from '../../utils/getCardColor';
 import { addLetterColor } from '../../redux/actions';
 import { getBrowser } from '../../utils/getBrowser';
+import { useViewportSize } from '@mantine/hooks';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
+import { useMediaQuery } from '@mantine/hooks';
 import { Center, Title } from '@mantine/core';
 import { useState, useEffect } from 'react';
 
@@ -20,6 +22,10 @@ const Card = ({ row, col }) => {
 	const isActive = row === gridWords.length;
 	const content = isActive ? guessWord[col] : gridWords[row]?.charAt(col);
 	const hasContent = content !== undefined;
+
+	const { width } = useViewportSize();
+	const isMobile = useMediaQuery('(max-width: 375px)');
+	const square = isMobile ? Math.floor(width / 7.5) : 60;
 
 	/* CHANGE KEYBOARD COLORS */
 
@@ -80,8 +86,8 @@ const Card = ({ row, col }) => {
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
 		border: border,
-		height: 60,
-		width: 60,
+		height: square,
+		width: square,
 	};
 
 	return (

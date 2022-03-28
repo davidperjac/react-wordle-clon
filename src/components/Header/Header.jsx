@@ -7,7 +7,7 @@ import Name from './Name';
 
 const Header = () => {
 	return (
-		<Group position="center" spacing="md">
+		<Group position="center" spacing="md" wra>
 			<GithubButton />
 			<InfoButton />
 			<Name />

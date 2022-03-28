@@ -10,7 +10,7 @@ const InfoButton = () => {
 			<InfoModal infoModal={infoModal} setInfoModal={setInfoModal} />
 			<Tooltip label="Info" withArrow>
 				<ActionIcon
-					color="purple"
+					color="indigo"
 					variant="light"
 					onClick={() => setInfoModal(true)}
 				>

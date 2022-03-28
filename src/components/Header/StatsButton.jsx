@@ -10,7 +10,7 @@ const StatsButton = () => {
 			<StatsModal statsModal={statsModal} setStatsModal={setStatsModal} />
 			<Tooltip label="Stats" withArrow>
 				<ActionIcon
-					color="purple"
+					color="lime"
 					variant="light"
 					onClick={() => setStatsModal(true)}
 				>

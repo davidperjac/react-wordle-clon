@@ -1,8 +1,8 @@
 import { Center, Title } from '@mantine/core';
-import { useSelector } from 'react-redux';
+import { useTheme } from '../../hooks/useTheme';
 
 const InfoCard = ({ letter, border, backgroundColor, color }) => {
-	const dark = useSelector((state) => state.dark);
+	const { dark } = useTheme();
 
 	const cardStyling = {
 		width: 45,

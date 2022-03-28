@@ -1,3 +1,4 @@
+import { encryptWithAES, decryptWithAES } from '../../utils/codification';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
 import { finishGame, cleanWords } from '../../redux/actions';
@@ -16,6 +17,8 @@ const Grid = () => {
 	const hasWordChanged = victoryWord === searchWord;
 	const isGridFull = gridWords.length === 6;
 
+	/* FINISH GAME HANDLER */
+
 	useEffect(() => {
 		setTimeout(function () {
 			if ((isWordIncluded || isGridFull) && hasWordChanged) {
@@ -25,16 +28,20 @@ const Grid = () => {
 	}, [dispatch, isWordIncluded, isGridFull, hasWordChanged]);
 
 	useEffect(() => {
-		if (searchWord !== victoryWord) {
+		if (searchWord !== decryptWithAES(victoryWord)) {
 			localStorage.removeItem('PLAYER_WORDS');
 			dispatch(cleanWords());
 		}
 	}, [searchWord, dispatch, victoryWord]);
 
+	/* STABLISH THE WINNING WORD */
+
 	useEffect(() => {
-		setVictoryWord(searchWord);
+		setVictoryWord(encryptWithAES(searchWord));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchWord]);
+
+	/* HANDLER OF SUBMITS BY KEYBOARD */
 
 	useSubmit(key, setKey);
 

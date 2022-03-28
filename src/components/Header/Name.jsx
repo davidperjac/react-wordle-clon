@@ -8,10 +8,12 @@ const Name = () => {
 			order={1}
 			align="center"
 			sx={(theme) => ({
+				fontFamily: 'Bitter',
+				letterSpacing: '-0.5px',
 				color: dark ? theme.colors.gray[0] : theme.colors.dark[9],
 			})}
 		>
-			REACDLE
+			Reacdle
 		</Title>
 	);
 };

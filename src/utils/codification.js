@@ -1,6 +1,6 @@
 import { AES, enc } from 'crypto-js';
 
-const passphrase = '123';
+const passphrase = process.env.REACT_APP_PASS_PHRASE;
 
 export const encryptWithAES = (text) => {
 	return AES.encrypt(text, passphrase).toString();
