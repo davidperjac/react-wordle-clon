@@ -6,6 +6,7 @@ export const useWords = () => {
 	const searchWord = useSelector((state) => state.words.searchWord);
 	const gridWords = useSelector((state) => state.words.gridWords);
 	const guessWord = useSelector((state) => state.words.guessWord);
+	const letterColors = useSelector((state) => state.letterColors.letterColors);
 	const isNotDictionary = !words.includes(guessWord);
 	const isShort = guessWord.length < 5;
 
@@ -16,5 +17,6 @@ export const useWords = () => {
 		isNotDictionary,
 		gridWords,
 		searchWord,
+		letterColors,
 	};
 };

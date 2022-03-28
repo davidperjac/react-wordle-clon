@@ -3,7 +3,7 @@ import { ActionIcon, Tooltip } from '@mantine/core';
 
 const GithubButton = () => {
 	return (
-		<Tooltip label="GitHub" withArrow>
+		<Tooltip label="davidperjac" withArrow>
 			<a
 				style={{ textDecoration: 'none', textDecorationColor: 'none' }}
 				href="https://github.com/davidperjac"

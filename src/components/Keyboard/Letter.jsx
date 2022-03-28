@@ -1,6 +1,5 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
 import { isLetterUsed } from '../../utils/isLetterUsed';
-import { getCardColor } from '../../utils/getCardColor';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
 import { useMediaQuery } from '@mantine/hooks';
@@ -13,17 +12,16 @@ const Letter = ({ letter }) => {
 		isShort,
 		isNotDictionary,
 		gridWords,
-		searchWord,
 		guessWord,
+		letterColors,
 	} = useWords();
-	const { dark } = useTheme();
-	const used = isLetterUsed(gridWords, letter);
-	const lastWord = gridWords[gridWords.length - 1];
-	const [color, setColor] = useState(
-		getCardColor(letter, searchWord, lastWord?.indexOf(letter), dark)
-	);
-
 	const isMobile = useMediaQuery('(max-width: 768px)');
+	const used = isLetterUsed(gridWords, letter);
+	const [color, setColor] = useState('');
+	const hasColor = used && color !== '';
+	const { dark } = useTheme();
+
+	/* ADD LETTER AND SUBMIT HANDLER */
 
 	const handleClick = () => {
 		if (letter === '⏎') {
@@ -44,45 +42,24 @@ const Letter = ({ letter }) => {
 		}
 	};
 
-	useEffect(() => {
-		for (let word of gridWords) {
-			const col = word.indexOf(letter);
-			const wasGreen = searchWord.indexOf(letter) !== word.indexOf(letter);
-			if (
-				((color === '#6ba964' || color === '#c8b458' || color === '#868E96') &&
-					col === -1) ||
-				wasGreen
-			) {
-				break;
-			}
-			if (col !== -1) {
-				setColor(getCardColor(letter, searchWord, word.indexOf(letter), dark));
-			}
-			if (dark && color === '#868E96') {
-				setColor('#2C2E33');
-			}
-		}
-	}, [used, gridWords, letter, searchWord, dark, color, lastWord]);
+	/* KEYBOARD COLOR ANIMATION */
 
 	useEffect(() => {
-		if (dark && color === '#868E96') {
-			setColor('#2C2E33');
-		} else {
-			setColor('#868E96');
+		for (let letterColor of letterColors) {
+			if (letterColor.letter === letter) {
+				setColor(letterColor.color);
+				if (letterColor.color === '#868E96' && dark) {
+					setColor('#2C2E33');
+				}
+			}
 		}
-	}, [dark]);
-
-	/*
-	&& lastWord
-					? col !== lastWord?.indexOf(letter)
-					: true
-	*/
+	}, [letter, letterColors, dark]);
 
 	const backgroundColor = (theme) =>
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
 
 	const letterStyle = (theme) => ({
-		color: dark || (used && !searchWord.includes(letter)) ? 'white' : 'black',
+		color: dark || hasColor ? 'white' : 'black',
 		backgroundColor: backgroundColor(theme),
 		width: isMobile ? 37 : 45,
 		borderRadius: '10px',

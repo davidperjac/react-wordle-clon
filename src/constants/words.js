@@ -95,7 +95,6 @@ export const words = [
 	'FIRST',
 	'FLOOR',
 	'FORCE',
-	'FORUM',
 	'FRANK',
 	'FRAUD',
 	'FRONT',

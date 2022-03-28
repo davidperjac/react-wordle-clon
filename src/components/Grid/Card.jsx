@@ -1,4 +1,5 @@
 import { getCardColor } from '../../utils/getCardColor';
+import { addLetterColor } from '../../redux/actions';
 import { getBrowser } from '../../utils/getBrowser';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
@@ -8,17 +9,27 @@ import { useState, useEffect } from 'react';
 const Card = ({ row, col }) => {
 	const browser = getBrowser();
 
-	const [background, setBackground] = useState('none');
 	const [flip, setFlip] = useState(browser !== 'safari' && 'rotateX(180deg)');
+	const [background, setBackground] = useState('none');
 	const [scale, setScale] = useState('scale(1.1)');
 
-	const { gridWords, guessWord, searchWord } = useWords();
+	const { dispatch, gridWords, guessWord, searchWord } = useWords();
 	const { dark } = useTheme();
 
-	const isActive = row === gridWords.length;
 	const color = getCardColor(gridWords[row]?.charAt(col), searchWord, col);
+	const isActive = row === gridWords.length;
 	const content = isActive ? guessWord[col] : gridWords[row]?.charAt(col);
 	const hasContent = content !== undefined;
+
+	/* CHANGE KEYBOARD COLORS */
+
+	useEffect(() => {
+		if (!isActive && hasContent) {
+			dispatch(addLetterColor({ letter: content, color: color }));
+		}
+	}, [dispatch, hasContent, isActive, color, content]);
+
+	/* SCALE ANIMATION */
 
 	useEffect(() => {
 		setTimeout(function () {
@@ -29,11 +40,15 @@ const Card = ({ row, col }) => {
 		};
 	}, [content]);
 
+	/* BACKGROUND ANIMATION */
+
 	useEffect(() => {
 		setTimeout(function () {
 			!isActive && setBackground(color);
 		}, 200 * (col + 1));
 	}, [col, color, isActive]);
+
+	/* ROTATION ANIMATION */
 
 	useEffect(() => {
 		setTimeout(function () {
@@ -61,7 +76,7 @@ const Card = ({ row, col }) => {
 	const cardStyling = {
 		transform:
 			(hasContent && !isActive && flip) || (hasContent && isActive && scale),
-		transition: 'background-color 0.8s , transform 0.8s',
+		transition: 'background-color 0.3s , transform 0.8s',
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
 		border: border,

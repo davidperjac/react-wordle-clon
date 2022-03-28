@@ -5,7 +5,13 @@ import {
 	CHANGE_THEME,
 	FINISH_GAME,
 	CLEAN_WORDS,
+	ADD_LETTER_COLOR,
 } from './types';
+
+export const addLetterColor = (payload) => ({
+	type: ADD_LETTER_COLOR,
+	payload,
+});
 
 export const addLetter = (payload) => ({
 	type: ADD_LETTER,
