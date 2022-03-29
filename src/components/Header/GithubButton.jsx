@@ -8,7 +8,7 @@ const GithubButton = () => {
 				style={{ textDecoration: 'none', textDecorationColor: 'none' }}
 				href="https://github.com/davidperjac"
 			>
-				<ActionIcon color="violet" variant="light">
+				<ActionIcon variant="transparent">
 					<VscGithubInverted size={30} />
 				</ActionIcon>
 			</a>

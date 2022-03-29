@@ -1,5 +1,5 @@
-import { BiHelpCircle } from 'react-icons/bi';
 import { ActionIcon, Tooltip } from '@mantine/core';
+import { BiHelpCircle } from 'react-icons/bi';
 import InfoModal from './InfoModal';
 import { useState } from 'react';
 
@@ -9,11 +9,7 @@ const InfoButton = () => {
 		<>
 			<InfoModal infoModal={infoModal} setInfoModal={setInfoModal} />
 			<Tooltip label="Info" withArrow>
-				<ActionIcon
-					color="indigo"
-					variant="light"
-					onClick={() => setInfoModal(true)}
-				>
+				<ActionIcon variant="transparent" onClick={() => setInfoModal(true)}>
 					<BiHelpCircle size={30} />
 				</ActionIcon>
 			</Tooltip>

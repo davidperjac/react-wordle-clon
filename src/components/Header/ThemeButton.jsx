@@ -1,9 +1,9 @@
-import { HiSun } from 'react-icons/hi';
-import { RiMoonClearFill } from 'react-icons/ri';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { changeTheme } from '../../redux/actions';
+import { RiMoonClearFill } from 'react-icons/ri';
 import { useTheme } from '../../hooks/useTheme';
 import { ActionIcon } from '@mantine/core';
+import { HiSun } from 'react-icons/hi';
 
 const ThemeButton = () => {
 	const { dark, dispatch } = useTheme();
@@ -15,7 +15,7 @@ const ThemeButton = () => {
 	};
 
 	return (
-		<ActionIcon color="purple" variant="light" onClick={handleClick}>
+		<ActionIcon variant="transparent" onClick={handleClick}>
 			{dark ? <RiMoonClearFill size={30} /> : <HiSun size={30} />}
 		</ActionIcon>
 	);

@@ -2,29 +2,39 @@ import { Modal, Text, Group } from '@mantine/core';
 import { finishGame } from '../../redux/actions';
 import { useWords } from '../../hooks/useWords';
 import { useSelector } from 'react-redux';
+import { useTheme } from '../../hooks/useTheme';
 
 const EndModal = () => {
 	const { dispatch, searchWord } = useWords();
+	const { dark } = useTheme();
 	const endModal = useSelector((state) => state.end.end);
 
 	return (
 		<Modal
-			transition="scale"
-			transitionDuration={400}
-			transitiontimingfunction="linear"
-			opened={endModal}
 			onClose={() => dispatch(finishGame())}
-			title="REACTDLE"
-			size="md"
-			trapFocus={false}
+			transitiontimingfunction="linear"
+			transitionDuration={400}
+			withCloseButton={false}
 			closeOnEscape={false}
+			overlayOpacity={0}
+			transition="pop"
+			trapFocus={false}
+			opened={endModal}
+			radius="sm"
+			size={90}
+			padding="sm"
+			zIndex={0}
 			styles={{
-				title: { fontWeight: '800' },
+				modal: {
+					backgroundColor: dark ? 'white' : 'black',
+					color: dark ? 'black' : 'white',
+					top: '35px',
+				},
 			}}
 		>
-			<Group>
-				<Text size="md" weight={500}>
-					The word was {searchWord}
+			<Group position="center">
+				<Text size="md" weight={700}>
+					{searchWord}
 				</Text>
 			</Group>
 		</Modal>

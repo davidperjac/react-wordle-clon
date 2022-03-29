@@ -1,25 +1,33 @@
 import { Modal, Text, Group } from '@mantine/core';
+import StatGroup from './StatGroup';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
 	return (
 		<Modal
-			transition="scale-y"
-			transitionDuration={400}
-			transitiontimingfunction="linear"
-			opened={statsModal}
 			onClose={() => setStatsModal(false)}
-			title="KNOW YOUR NUMBERS!"
+			transitiontimingfunction="linear"
+			transitionDuration={200}
+			withCloseButton={false}
+			transition="scale-y"
+			opened={statsModal}
+			centered
 			size="md"
-			styles={{
-				title: { fontWeight: '800' },
-			}}
 		>
-			<Group>
-				<Text size="md" weight={500}>
-					Here you have your statistics:
-				</Text>
+			<Group position="center" direction="column">
 				<Text size="md" weight={800}>
-					Get better!
+					STATISTICS
+				</Text>
+				<Group position="center" spacing="xs">
+					<StatGroup stat="Played" number="0" />
+					<StatGroup stat="Win %" number="0" />
+					<StatGroup stat="Current Streak" number="0" />
+					<StatGroup stat="Max Streak" number="0" />
+				</Group>
+				<Text size="md" weight={800}>
+					GUESS DISTRIBUTION
+				</Text>
+				<Text size="sm" weight={600}>
+					NO DATA
 				</Text>
 			</Group>
 		</Modal>

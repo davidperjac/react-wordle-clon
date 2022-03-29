@@ -7,7 +7,13 @@ import Name from './Name';
 
 const Header = () => {
 	return (
-		<Group position="center" spacing="md" wra>
+		<Group
+			position="center"
+			spacing="md"
+			sx={(theme) => ({
+				borderBottom: '1px solid gray',
+			})}
+		>
 			<GithubButton />
 			<InfoButton />
 			<Name />

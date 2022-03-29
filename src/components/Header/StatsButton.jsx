@@ -9,11 +9,7 @@ const StatsButton = () => {
 		<>
 			<StatsModal statsModal={statsModal} setStatsModal={setStatsModal} />
 			<Tooltip label="Stats" withArrow>
-				<ActionIcon
-					color="lime"
-					variant="light"
-					onClick={() => setStatsModal(true)}
-				>
+				<ActionIcon variant="transparent" onClick={() => setStatsModal(true)}>
 					<IoStatsChart size={30} />
 				</ActionIcon>
 			</Tooltip>

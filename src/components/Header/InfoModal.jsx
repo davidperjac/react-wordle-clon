@@ -8,7 +8,7 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 	return (
 		<Modal
 			transition="scale-y"
-			transitionDuration={600}
+			transitionDuration={200}
 			transitiontimingfunction="linear"
 			opened={infoModal}
 			onClose={() => setInfoModal(false)}
