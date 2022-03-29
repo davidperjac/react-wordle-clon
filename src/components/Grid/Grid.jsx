@@ -1,7 +1,8 @@
 import { encryptWithAES, decryptWithAES } from '../../utils/codification';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { finishGame, cleanWords } from '../../redux/actions';
+import { initialStats } from '../../constants/initialStats';
 import { useSubmit } from '../../hooks/useSubmit';
 import { useWords } from '../../hooks/useWords';
 import { Group } from '@mantine/core';
@@ -10,28 +11,54 @@ import Row from './Row';
 
 const Grid = () => {
 	const [victoryWord, setVictoryWord] = useLocalStorage('VICTORY_WORD', '');
+	const [statistics, setStatistics] = useLocalStorage('STATISTICS', {});
 	const { dispatch, searchWord, gridWords } = useWords();
+	const [play, setCanPlay] = useLocalStorage('PLAY', '');
 	const { key, setKey } = useKeyboardPress();
 
-	const isWordIncluded = gridWords.includes(searchWord);
-	const hasWordChanged = victoryWord === searchWord;
-	const isGridFull = gridWords.length === 6;
+	const hasWordChanged = decryptWithAES(victoryWord) === searchWord;
+	const win = gridWords.includes(searchWord);
+	const lose = gridWords.length === 6 && !win;
 
-	/* FINISH GAME HANDLER */
+	useEffect(() => {
+		setCanPlay(true);
+	}, [gridWords]);
 
 	useEffect(() => {
 		setTimeout(function () {
-			if ((isWordIncluded || isGridFull) && hasWordChanged) {
+			if ((win || lose) && play) {
 				dispatch(finishGame());
+				if (!window.localStorage.getItem('STATISTICS')) {
+					setStatistics(initialStats(win));
+				} else {
+					setStatistics({
+						...statistics,
+						gamesPlayed: (statistics.gamesPlayed += 1),
+					});
+
+					if (win) {
+						setStatistics({
+							...statistics,
+							gamesWon: (statistics.gamesWon += 1),
+						});
+					}
+				}
 			}
 		}, 3000);
-	}, [dispatch, isWordIncluded, isGridFull, hasWordChanged]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [win, lose]);
+
+	//dispatch, isWordIncluded, isGridFull, hasWordChanged
+
+	/* REMOVE GRID WORDS WHEN DAY CHANGES */
 
 	useEffect(() => {
 		if (searchWord !== decryptWithAES(victoryWord)) {
 			localStorage.removeItem('PLAYER_WORDS');
 			dispatch(cleanWords());
+			setCanPlay(true);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchWord, dispatch, victoryWord]);
 
 	/* STABLISH THE WINNING WORD */
