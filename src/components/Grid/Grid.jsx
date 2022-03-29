@@ -16,12 +16,13 @@ const Grid = () => {
 	const [play, setCanPlay] = useLocalStorage('PLAY', '');
 	const { key, setKey } = useKeyboardPress();
 
-	const hasWordChanged = decryptWithAES(victoryWord) === searchWord;
+	//const hasWordChanged = decryptWithAES(victoryWord) === searchWord;
 	const win = gridWords.includes(searchWord);
 	const lose = gridWords.length === 6 && !win;
 
 	useEffect(() => {
 		setCanPlay(true);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [gridWords]);
 
 	useEffect(() => {

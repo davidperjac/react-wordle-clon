@@ -25,3 +25,19 @@ export const addLetterColorReducer = (state = initialState, action) => {
 };
 
 export default addLetterColorReducer;
+/*
+			Array.from(
+				new Set(
+					[...state.letterColors, action.payload].map(JSON.stringify)
+				)
+			).map(JSON.parse)
+*/
+
+/*
+	? [
+							...state.letterColors.filter(
+								(letterColor) => letterColor !== action.payload 
+							),
+					  ]
+					: [...state.letterColors, action.payload],
+*/

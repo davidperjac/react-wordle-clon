@@ -53,6 +53,9 @@ const Letter = ({ letter }) => {
 				if (letterColor.color === '#868E96' && dark) {
 					setColor('#2C2E33');
 				}
+				if (letterColor.color === '#6ba964') {
+					break;
+				}
 			}
 		}
 	}, [letter, letterColors, dark]);

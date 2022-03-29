@@ -42,7 +42,7 @@ const Card = ({ row, col }) => {
 			setScale('scale(1)');
 		}, 50);
 		return () => {
-			setScale('scale(2)');
+			setScale('scale(1.4)');
 		};
 	}, [content]);
 
@@ -82,7 +82,7 @@ const Card = ({ row, col }) => {
 	const cardStyling = {
 		transform:
 			(hasContent && !isActive && flip) || (hasContent && isActive && scale),
-		transition: 'background-color 0.3s , transform 0.8s',
+		transition: 'background-color 0.3s , transform 0.3s',
 		backgroundColor: !isActive ? background : 'none',
 		color: colorStyle,
 		border: border,
