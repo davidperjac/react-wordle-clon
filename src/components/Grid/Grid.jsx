@@ -11,7 +11,7 @@ import Row from './Row';
 
 const Grid = () => {
 	const [victoryWord, setVictoryWord] = useLocalStorage('VICTORY_WORD', '');
-	const [statistics, setStatistics] = useLocalStorage('STATISTICS', {});
+	const [statistics, setStatistics] = useLocalStorage('STATISTICS', null);
 	const { dispatch, searchWord, gridWords } = useWords();
 	const [play, setCanPlay] = useLocalStorage('PLAY', '');
 	const { key, setKey } = useKeyboardPress();
@@ -20,10 +20,14 @@ const Grid = () => {
 	const win = gridWords.includes(searchWord);
 	const lose = gridWords.length === 6 && !win;
 
+	/* DECIDES IF A PLAYER CAN CONTINUE PLAYING */
+
 	useEffect(() => {
-		setCanPlay(true);
+		setCanPlay(win || lose ? false : true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [gridWords]);
+	}, [win, lose]);
+
+	/* ESTABLISH STATISTICS AFTER A MATCH */
 
 	useEffect(() => {
 		setTimeout(function () {
@@ -49,15 +53,12 @@ const Grid = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [win, lose]);
 
-	//dispatch, isWordIncluded, isGridFull, hasWordChanged
-
 	/* REMOVE GRID WORDS WHEN DAY CHANGES */
 
 	useEffect(() => {
 		if (searchWord !== decryptWithAES(victoryWord)) {
 			localStorage.removeItem('PLAYER_WORDS');
 			dispatch(cleanWords());
-			setCanPlay(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchWord, dispatch, victoryWord]);

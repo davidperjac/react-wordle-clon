@@ -1,7 +1,13 @@
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Modal, Text, Group } from '@mantine/core';
 import StatGroup from './StatGroup';
+import { useEffect } from 'react';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
+	const [statistics] = useLocalStorage('STATISTICS', null);
+
+	useEffect(() => {}, [statistics]);
+
 	return (
 		<Modal
 			onClose={() => setStatsModal(false)}
@@ -18,16 +24,19 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 					STATISTICS
 				</Text>
 				<Group position="center" spacing="xs">
-					<StatGroup stat="Played" number="0" />
-					<StatGroup stat="Win %" number="0" />
-					<StatGroup stat="Current Streak" number="0" />
+					<StatGroup stat="Played" number={statistics.gamesPlayed} />
+					<StatGroup
+						stat="Win %"
+						number={(statistics.gamesWon / statistics.gamesPlayed) * 100}
+					/>
+					<StatGroup stat="Current Streak" number={statistics.currentStreak} />
 					<StatGroup stat="Max Streak" number="0" />
 				</Group>
 				<Text size="md" weight={800}>
 					GUESS DISTRIBUTION
 				</Text>
 				<Text size="sm" weight={600}>
-					NO DATA
+					{statistics ? 'DATA' : 'NO DATA'}
 				</Text>
 			</Group>
 		</Modal>

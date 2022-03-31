@@ -1,4 +1,3 @@
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Modal, Text, Group } from '@mantine/core';
 import { finishGame } from '../../redux/actions';
 import { useWords } from '../../hooks/useWords';
@@ -7,13 +6,11 @@ import { useSelector } from 'react-redux';
 
 const EndModal = () => {
 	const endModal = useSelector((state) => state.end.end);
-	const [, setCanPlay] = useLocalStorage('PLAY', '');
 	const { dispatch, searchWord } = useWords();
 	const { dark } = useTheme();
 
 	const handleClose = () => {
 		dispatch(finishGame());
-		setCanPlay(false);
 	};
 
 	return (
