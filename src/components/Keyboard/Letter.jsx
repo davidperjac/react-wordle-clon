@@ -1,5 +1,6 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
 import { isLetterUsed } from '../../utils/isLetterUsed';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useViewportSize } from '@mantine/hooks';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
@@ -17,6 +18,7 @@ const Letter = ({ letter }) => {
 		letterColors,
 	} = useWords();
 	const isMobile = useMediaQuery('(max-width: 768px)');
+	const [play] = useLocalStorage('PLAY', '');
 	const used = isLetterUsed(gridWords, letter);
 	const [color, setColor] = useState('');
 	const hasColor = used && color !== '';
@@ -26,20 +28,22 @@ const Letter = ({ letter }) => {
 	/* ADD LETTER AND SUBMIT HANDLER */
 
 	const handleClick = () => {
-		if (letter === '⏎') {
-			if (isShort) {
-				dispatch(setError('Not Enough Letters!!'));
-			} else if (isNotDictionary) {
-				dispatch(setError('Not In Word List!!'));
+		if (play) {
+			if (letter === '⏎') {
+				if (isShort) {
+					dispatch(setError('Not Enough Letters!!'));
+				} else if (isNotDictionary) {
+					dispatch(setError('Not In Word List!!'));
+				} else {
+					dispatch(sendWord());
+				}
 			} else {
-				dispatch(sendWord());
-			}
-		} else {
-			if (letter === '⌫' && guessWord !== '') {
-				dispatch(addLetter('BACKSPACE'));
-			}
-			if (letter !== '⌫' && guessWord.length !== 5) {
-				dispatch(addLetter(letter));
+				if (letter === '⌫' && guessWord !== '') {
+					dispatch(addLetter('BACKSPACE'));
+				}
+				if (letter !== '⌫' && guessWord.length !== 5) {
+					dispatch(addLetter(letter));
+				}
 			}
 		}
 	};

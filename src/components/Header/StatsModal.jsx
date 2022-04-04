@@ -24,12 +24,22 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 					STATISTICS
 				</Text>
 				<Group position="center" spacing="xs">
-					<StatGroup stat="Played" number={statistics.gamesPlayed} />
+					<StatGroup
+						stat="Played"
+						number={statistics ? statistics.gamesPlayed : 0}
+					/>
 					<StatGroup
 						stat="Win %"
-						number={(statistics.gamesWon / statistics.gamesPlayed) * 100}
+						number={
+							statistics
+								? (statistics.gamesWon / statistics.gamesPlayed) * 100
+								: 0
+						}
 					/>
-					<StatGroup stat="Current Streak" number={statistics.currentStreak} />
+					<StatGroup
+						stat="Current Streak"
+						number={statistics ? statistics.currentStreak : 0}
+					/>
 					<StatGroup stat="Max Streak" number="0" />
 				</Group>
 				<Text size="md" weight={800}>
