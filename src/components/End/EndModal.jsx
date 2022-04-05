@@ -16,7 +16,7 @@ const EndModal = () => {
 	return (
 		<Modal
 			transitiontimingfunction="linear"
-			transitionDuration={200}
+			transitionDuration={400}
 			withCloseButton={false}
 			onClose={handleClose}
 			closeOnEscape={false}

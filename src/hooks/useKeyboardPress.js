@@ -3,8 +3,8 @@ import { checkKey } from '../utils/checkKey';
 import { useState, useEffect } from 'react';
 
 export const useKeyboardPress = () => {
-	const [key, setKey] = useState('');
 	const [play] = useLocalStorage('PLAY', '');
+	const [key, setKey] = useState('');
 
 	useEffect(() => {
 		window.addEventListener('keydown', (event) => {

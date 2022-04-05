@@ -6,6 +6,7 @@ import Clock from './Clock';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
 	const [statistics] = useLocalStorage('STATISTICS', null);
+	const [play] = useLocalStorage('PLAY', null);
 
 	useEffect(() => {}, [statistics]);
 
@@ -13,9 +14,9 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 		<Modal
 			onClose={() => setStatsModal(false)}
 			transitiontimingfunction="linear"
-			transitionDuration={200}
+			transitionDuration={400}
 			withCloseButton={false}
-			transition="scale-y"
+			transition="slide-up"
 			opened={statsModal}
 			centered
 			size="md"
@@ -49,10 +50,14 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 				<Text size="sm" weight={600}>
 					{statistics ? 'DATA' : 'NO DATA'}
 				</Text>
-				<Text size="md" weight={800}>
-					NEXT REACDLE
-				</Text>
-				<Clock />
+				{!play && (
+					<>
+						<Text size="md" weight={800}>
+							NEXT REACDLE
+						</Text>
+						<Clock />
+					</>
+				)}
 			</Group>
 		</Modal>
 	);

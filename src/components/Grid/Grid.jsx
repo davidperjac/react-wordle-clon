@@ -39,7 +39,7 @@ const Grid = () => {
 			if ((win || lose) && play) {
 				dispatch(finishGame());
 				if (noStats) {
-					hasNoStats(setStatistics, statistics);
+					hasNoStats(setStatistics, win);
 				} else {
 					addGamePlayed(setStatistics, statistics);
 					if (win) {

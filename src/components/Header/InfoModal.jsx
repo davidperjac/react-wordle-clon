@@ -7,12 +7,12 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 	const linkStyle = { textDecoration: 'none', color: '#6ba964', weight: 800 };
 	return (
 		<Modal
-			transition="scale-y"
-			transitionDuration={200}
-			transitiontimingfunction="linear"
-			opened={infoModal}
 			onClose={() => setInfoModal(false)}
+			transitiontimingfunction="linear"
+			transitionDuration={400}
+			transition="slide-up"
 			title="HOW TO PLAY!"
+			opened={infoModal}
 			size="md"
 			styles={{
 				title: { fontWeight: '800' },
