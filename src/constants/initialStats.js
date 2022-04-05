@@ -3,6 +3,6 @@ export const initialStats = (win) => {
 		gamesPlayed: 1,
 		currentStreak: win ? 1 : 0,
 		gamesWon: win ? 1 : 0,
-		maxStreak: win ? 1 : 0,
+		maxStreak: 0,
 	};
 };

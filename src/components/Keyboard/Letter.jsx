@@ -1,6 +1,6 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
-import { isLetterUsed } from '../../utils/isLetterUsed';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { isLetterUsed } from '../../utils/isLetterUsed';
 import { useViewportSize } from '@mantine/hooks';
 import { useWords } from '../../hooks/useWords';
 import { useTheme } from '../../hooks/useTheme';
@@ -18,8 +18,8 @@ const Letter = ({ letter }) => {
 		letterColors,
 	} = useWords();
 	const isMobile = useMediaQuery('(max-width: 768px)');
-	const [play] = useLocalStorage('PLAY', '');
 	const used = isLetterUsed(gridWords, letter);
+	const [play] = useLocalStorage('PLAY', '');
 	const [color, setColor] = useState('');
 	const hasColor = used && color !== '';
 	const { width } = useViewportSize();
@@ -31,9 +31,9 @@ const Letter = ({ letter }) => {
 		if (play) {
 			if (letter === '⏎') {
 				if (isShort) {
-					dispatch(setError('Not Enough Letters!!'));
+					dispatch(setError('Not Enough Letters'));
 				} else if (isNotDictionary) {
-					dispatch(setError('Not In Word List!!'));
+					dispatch(setError(guessWord + ' Not In Word List'));
 				} else {
 					dispatch(sendWord());
 				}
@@ -68,12 +68,12 @@ const Letter = ({ letter }) => {
 		used ? color : dark ? '#5C5F66' : theme.colors.gray[3];
 
 	const letterStyle = (theme) => ({
+		width: isMobile ? Math.floor(width / 11.05) : 45,
 		color: dark || hasColor ? 'white' : 'black',
 		backgroundColor: backgroundColor(theme),
-		width: isMobile ? Math.floor(width / 11.05) : 45,
 		borderRadius: '4px',
 		cursor: 'pointer',
-		height: 50,
+		height: 60,
 	});
 
 	return (

@@ -2,12 +2,17 @@ import { encryptWithAES, decryptWithAES } from '../../utils/codification';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { finishGame, cleanWords } from '../../redux/actions';
-import { initialStats } from '../../constants/initialStats';
 import { useSubmit } from '../../hooks/useSubmit';
 import { useWords } from '../../hooks/useWords';
 import { Group } from '@mantine/core';
 import { useEffect } from 'react';
 import Row from './Row';
+import {
+	hasNoStats,
+	addGamePlayed,
+	addVictory,
+	addDefeat,
+} from '../../utils/localStorageStats';
 
 const Grid = () => {
 	const [victoryWord, setVictoryWord] = useLocalStorage('VICTORY_WORD', '');
@@ -16,9 +21,9 @@ const Grid = () => {
 	const [play, setCanPlay] = useLocalStorage('PLAY', '');
 	const { key, setKey } = useKeyboardPress();
 
-	//const hasWordChanged = decryptWithAES(victoryWord) === searchWord;
 	const win = gridWords.includes(searchWord);
 	const lose = gridWords.length === 6 && !win;
+	const noStats = !window.localStorage.getItem('STATISTICS');
 
 	/* DECIDES IF A PLAYER CAN CONTINUE PLAYING */
 
@@ -33,19 +38,15 @@ const Grid = () => {
 		setTimeout(function () {
 			if ((win || lose) && play) {
 				dispatch(finishGame());
-				if (!window.localStorage.getItem('STATISTICS')) {
-					setStatistics(initialStats(win));
+				if (noStats) {
+					hasNoStats(setStatistics, statistics);
 				} else {
-					setStatistics({
-						...statistics,
-						gamesPlayed: (statistics.gamesPlayed += 1),
-					});
-
+					addGamePlayed(setStatistics, statistics);
 					if (win) {
-						setStatistics({
-							...statistics,
-							gamesWon: (statistics.gamesWon += 1),
-						});
+						addVictory(setStatistics, statistics);
+					}
+					if (lose) {
+						addDefeat(setStatistics, statistics);
 					}
 				}
 			}

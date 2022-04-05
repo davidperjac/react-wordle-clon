@@ -11,25 +11,27 @@ const ErrorModal = () => {
 		if (open) {
 			setTimeout(function () {
 				dispatch(setError(''));
-			}, 3000);
+			}, 1500);
 		}
 	}, [dispatch, open]);
 
 	return (
 		<Modal
-			opened={open}
+			closeOnClickOutside={false}
+			transitionDuration={200}
+			withCloseButton={false}
+			closeOnEscape={false}
 			overlayOpacity={0}
-			transition="scale"
+			trapFocus={false}
+			transition="pop"
+			opened={open}
 			radius="md"
 			size="xss"
-			withCloseButton={false}
-			trapFocus={false}
-			closeOnEscape={false}
-			closeOnClickOutside={false}
 			styles={{
 				modal: {
 					backgroundColor: '#FA5252',
 					color: 'white',
+					top: '30px',
 				},
 			}}
 		>

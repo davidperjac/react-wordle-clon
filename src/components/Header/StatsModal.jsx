@@ -2,6 +2,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Modal, Text, Group } from '@mantine/core';
 import StatGroup from './StatGroup';
 import { useEffect } from 'react';
+import Clock from './Clock';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
 	const [statistics] = useLocalStorage('STATISTICS', null);
@@ -23,7 +24,7 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 				<Text size="md" weight={800}>
 					STATISTICS
 				</Text>
-				<Group position="center" spacing="xs">
+				<Group position="center" spacing="xss">
 					<StatGroup
 						stat="Played"
 						number={statistics ? statistics.gamesPlayed : 0}
@@ -48,6 +49,10 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 				<Text size="sm" weight={600}>
 					{statistics ? 'DATA' : 'NO DATA'}
 				</Text>
+				<Text size="md" weight={800}>
+					NEXT REACDLE
+				</Text>
+				<Clock />
 			</Group>
 		</Modal>
 	);

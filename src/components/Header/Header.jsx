@@ -9,7 +9,7 @@ const Header = () => {
 	return (
 		<Group
 			position="center"
-			spacing="md"
+			spacing="lg"
 			sx={(theme) => ({
 				borderBottom: '1px solid gray',
 			})}

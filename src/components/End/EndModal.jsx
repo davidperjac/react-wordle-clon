@@ -15,10 +15,10 @@ const EndModal = () => {
 
 	return (
 		<Modal
-			onClose={handleClose}
 			transitiontimingfunction="linear"
 			transitionDuration={200}
 			withCloseButton={false}
+			onClose={handleClose}
 			closeOnEscape={false}
 			overlayOpacity={0}
 			transition="pop"

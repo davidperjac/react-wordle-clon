@@ -12,9 +12,9 @@ export const useSubmit = (key, setKey) => {
 		if (key !== '') {
 			if (key === 'ENTER') {
 				if (isShort) {
-					dispatch(setError('Not Enough Letters!!'));
+					dispatch(setError('Not Enough Letters'));
 				} else if (isNotDictionary) {
-					dispatch(setError(guessWord + ' is not In Word List!!'));
+					dispatch(setError(guessWord + ' is not In Word List'));
 				} else {
 					dispatch(sendWord());
 				}
