@@ -1,23 +1,32 @@
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Modal, Text, Group } from '@mantine/core';
+import { openStats } from '../../redux/actions';
+import { useWords } from '../../hooks/useWords';
+import { useSelector } from 'react-redux';
 import StatGroup from './StatGroup';
-import { useEffect } from 'react';
 import Clock from './Clock';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
-	const [statistics] = useLocalStorage('STATISTICS', null);
-	const [play] = useLocalStorage('PLAY', null);
+	const statistics = JSON.parse(window.localStorage.getItem('STATISTICS'));
+	const stats = useSelector((state) => state.end.stats);
+	const play = JSON.parse(window.localStorage.getItem('PLAY'));
+	const { dispatch } = useWords();
 
-	useEffect(() => {}, [statistics]);
+	const handleClose = () => {
+		setStatsModal(false);
+		if (!statsModal) {
+			dispatch(openStats());
+		}
+	};
 
 	return (
 		<Modal
-			onClose={() => setStatsModal(false)}
+			onClose={handleClose}
 			transitiontimingfunction="linear"
 			transitionDuration={400}
 			withCloseButton={false}
 			transition="slide-up"
-			opened={statsModal}
+			trapFocus={false}
+			opened={statsModal || stats}
 			centered
 			size="md"
 		>
@@ -34,7 +43,10 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 						stat="Win %"
 						number={
 							statistics
-								? (statistics.gamesWon / statistics.gamesPlayed) * 100
+								? (
+										(statistics.gamesWon / statistics.gamesPlayed) *
+										100
+								  ).toFixed(2)
 								: 0
 						}
 					/>
@@ -42,7 +54,10 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 						stat="Current Streak"
 						number={statistics ? statistics.currentStreak : 0}
 					/>
-					<StatGroup stat="Max Streak" number="0" />
+					<StatGroup
+						stat="Max Streak"
+						number={statistics ? statistics.maxStreak : 0}
+					/>
 				</Group>
 				<Text size="md" weight={800}>
 					GUESS DISTRIBUTION

@@ -1,7 +1,7 @@
 import { encryptWithAES, decryptWithAES } from '../../utils/codification';
+import { finishGame, cleanWords, openStats } from '../../redux/actions';
 import { useKeyboardPress } from '../../hooks/useKeyboardPress';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { finishGame, cleanWords } from '../../redux/actions';
 import { useSubmit } from '../../hooks/useSubmit';
 import { useWords } from '../../hooks/useWords';
 import { Group } from '@mantine/core';
@@ -41,16 +41,23 @@ const Grid = () => {
 				if (noStats) {
 					hasNoStats(setStatistics, win);
 				} else {
-					addGamePlayed(setStatistics, statistics);
 					if (win) {
 						addVictory(setStatistics, statistics);
 					}
 					if (lose) {
 						addDefeat(setStatistics, statistics);
 					}
+					addGamePlayed(setStatistics, statistics);
 				}
 			}
+		}, 1000);
+
+		setTimeout(() => {
+			if ((win || lose) && play) {
+				dispatch(openStats());
+			}
 		}, 3000);
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [win, lose]);
 

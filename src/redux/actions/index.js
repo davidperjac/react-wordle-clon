@@ -6,6 +6,7 @@ import {
 	FINISH_GAME,
 	CLEAN_WORDS,
 	ADD_LETTER_COLOR,
+	OPEN_STATS,
 } from './types';
 
 export const addLetterColor = (payload) => ({
@@ -33,6 +34,10 @@ export const changeTheme = () => ({
 
 export const finishGame = () => ({
 	type: FINISH_GAME,
+});
+
+export const openStats = () => ({
+	type: OPEN_STATS,
 });
 
 export const cleanWords = () => ({

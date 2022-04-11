@@ -24,6 +24,7 @@ export const addDefeat = (setStatistics, statistics) => {
 		...statistics,
 		currentStreak: 0,
 	});
+	console.log(statistics);
 };
 
 export const hasNoStats = (setStatistics, win) => {
