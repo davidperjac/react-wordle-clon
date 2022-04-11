@@ -41,13 +41,13 @@ const Grid = () => {
 				if (noStats) {
 					hasNoStats(setStatistics, win);
 				} else {
+					addGamePlayed(setStatistics, statistics);
 					if (win) {
 						addVictory(setStatistics, statistics);
 					}
 					if (lose) {
 						addDefeat(setStatistics, statistics);
 					}
-					addGamePlayed(setStatistics, statistics);
 				}
 			}
 		}, 1000);

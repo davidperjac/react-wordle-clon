@@ -5,7 +5,7 @@ export const addGamePlayed = (setStatistics, statistics) => {
 		...statistics,
 		gamesPlayed: (statistics.gamesPlayed += 1),
 		maxStreak:
-			statistics.maxStreak < statistics.currentStreak
+			statistics.maxStreak <= statistics.currentStreak
 				? statistics.currentStreak
 				: statistics.maxStreak,
 	});
@@ -20,11 +20,12 @@ export const addVictory = (setStatistics, statistics) => {
 };
 
 export const addDefeat = (setStatistics, statistics) => {
+	console.log(statistics);
 	setStatistics({
 		...statistics,
 		currentStreak: 0,
 	});
-	console.log(statistics);
+	console.log(statistics.currentStreak);
 };
 
 export const hasNoStats = (setStatistics, win) => {
