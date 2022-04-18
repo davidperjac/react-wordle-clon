@@ -1,31 +1,46 @@
 import { Modal, Text, Group } from '@mantine/core';
+import { useEffect } from 'react';
 import AdultWord from '../Words/AdultWord';
 import CoachWord from '../Words/CoachWord';
 import DreamWord from '../Words/DreamWord';
 
 const InfoModal = ({ infoModal, setInfoModal }) => {
 	const linkStyle = { textDecoration: 'none', color: '#6ba964', weight: 800 };
+	const noStats = !window.localStorage.getItem('STATISTICS');
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (noStats) {
+				setInfoModal(true);
+			}
+		}, 1000);
+	}, [noStats, setInfoModal]);
+
 	return (
 		<Modal
 			onClose={() => setInfoModal(false)}
 			transitiontimingfunction="linear"
 			transitionDuration={400}
+			overlayOpacity={0.3}
 			transition="slide-up"
 			title="HOW TO PLAY!"
+			overflow="none"
 			opened={infoModal}
+			trapFocus={false}
 			size="md"
 			styles={{
 				title: { fontWeight: '800' },
+				modal: {
+					boxShadow: '0px 0px 20px 1px grey',
+					outline: 'none',
+				},
 			}}
 		>
 			<Group>
 				<Text size="md" weight={500}>
 					Guess the REACDLE in six tries. Each guess must be a valid five-letter
-					word.
-				</Text>
-				<Text size="md" weight={500}>
-					Hit the enter button to submit. After each guess, the color of the
-					tiles will change to show how close your guess was to the word.
+					word. Hit the enter button to submit. After each guess, the color of
+					the tiles will change to show how close your guess was to the word.
 				</Text>
 				<Text size="md" weight={800}>
 					Here you have some examples!

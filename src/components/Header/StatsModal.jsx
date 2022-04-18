@@ -20,13 +20,14 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 
 	return (
 		<Modal
-			onClose={handleClose}
 			transitiontimingfunction="linear"
+			opened={statsModal || stats}
 			transitionDuration={400}
 			withCloseButton={false}
+			onClose={handleClose}
 			transition="slide-up"
+			overlayOpacity={0.3}
 			trapFocus={false}
-			opened={statsModal || stats}
 			centered
 			size="md"
 		>
