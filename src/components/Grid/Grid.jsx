@@ -39,11 +39,11 @@ const Grid = () => {
 			if ((win || lose) && play) {
 				dispatch(finishGame());
 				if (noStats) {
-					hasNoStats(setStatistics, win);
+					hasNoStats(setStatistics, win, gridWords.length);
 				} else {
 					addGamePlayed(setStatistics, statistics);
 					if (win) {
-						addVictory(setStatistics, statistics);
+						addVictory(setStatistics, statistics, gridWords.length);
 					}
 					if (lose) {
 						addDefeat(setStatistics, statistics);

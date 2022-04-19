@@ -3,12 +3,13 @@ import { openStats } from '../../redux/actions';
 import { useWords } from '../../hooks/useWords';
 import { useSelector } from 'react-redux';
 import StatGroup from './StatGroup';
+import Guesses from './Guesses';
 import Clock from './Clock';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
 	const statistics = JSON.parse(window.localStorage.getItem('STATISTICS'));
-	const stats = useSelector((state) => state.end.stats);
 	const play = JSON.parse(window.localStorage.getItem('PLAY'));
+	const stats = useSelector((state) => state.end.stats);
 	const { dispatch } = useWords();
 
 	const handleClose = () => {
@@ -63,9 +64,14 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 				<Text size="md" weight={800}>
 					GUESS DISTRIBUTION
 				</Text>
-				<Text size="sm" weight={600}>
-					{statistics ? 'DATA' : 'NO DATA'}
-				</Text>
+				{statistics ? (
+					<Guesses />
+				) : (
+					<Text size="sm" weight={600}>
+						NO DATA
+					</Text>
+				)}
+
 				{!play && (
 					<>
 						<Text size="md" weight={800}>
