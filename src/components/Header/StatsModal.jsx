@@ -4,13 +4,12 @@ import { useWords } from '../../hooks/useWords';
 import { useSelector } from 'react-redux';
 import ShareButton from './ShareButton';
 import StatGroup from './StatGroup';
+import Divider from './Divider';
 import Guesses from './Guesses';
 import Clock from './Clock';
-import Divider from './Divider';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
 	const statistics = JSON.parse(window.localStorage.getItem('STATISTICS'));
-	const { gamesPlayed, gamesWon, currentStreak, maxStreak } = statistics;
 	const play = JSON.parse(window.localStorage.getItem('PLAY'));
 	const stats = useSelector((state) => state.end.stats);
 	const { dispatch } = useWords();
@@ -41,18 +40,29 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 					STATISTICS
 				</Text>
 				<Group position="center" spacing="xss">
-					<StatGroup stat="Played" number={statistics ? gamesPlayed : 0} />
+					<StatGroup
+						stat="Played"
+						number={statistics ? statistics.gamesPlayed : 0}
+					/>
 					<StatGroup
 						stat="Win %"
 						number={
-							statistics ? ((gamesWon / gamesPlayed) * 100).toFixed(2) : 0
+							statistics
+								? (
+										(statistics.gamesWon / statistics.gamesPlayed) *
+										100
+								  ).toFixed(2)
+								: 0
 						}
 					/>
 					<StatGroup
 						stat="Current Streak"
-						number={statistics ? currentStreak : 0}
+						number={statistics ? statistics.currentStreak : 0}
 					/>
-					<StatGroup stat="Max Streak" number={statistics ? maxStreak : 0} />
+					<StatGroup
+						stat="Max Streak"
+						number={statistics ? statistics.maxStreak : 0}
+					/>
 				</Group>
 				<Text size="md" weight={800}>
 					GUESS DISTRIBUTION
@@ -62,9 +72,11 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 			{statistics ? (
 				<Guesses />
 			) : (
-				<Text size="sm" weight={600}>
-					NO DATA
-				</Text>
+				<Group position="center">
+					<Text size="sm" weight={600}>
+						NO DATA
+					</Text>
+				</Group>
 			)}
 			<Space h="md" />
 			{!play && (

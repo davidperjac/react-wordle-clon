@@ -32,7 +32,7 @@ const EndModal = () => {
 				modal: {
 					backgroundColor: dark ? 'white' : 'black',
 					color: dark ? 'black' : 'white',
-					top: '35px',
+					top: '30px',
 				},
 			}}
 		>
