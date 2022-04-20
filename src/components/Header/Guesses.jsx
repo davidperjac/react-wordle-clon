@@ -1,20 +1,32 @@
-import { Text, Group, Center } from '@mantine/core';
+import { guessKeys } from '../../constants/keys';
+import { Text, Group } from '@mantine/core';
+import GuessNumber from './GuessNumber';
 
 const Guesses = () => {
+	const { guesses } = JSON.parse(window.localStorage.getItem('STATISTICS'));
 	return (
-		<Group
-			direction="column"
-			position="right"
-			style={{
-				backgroundColor: '#FA5252',
-				color: 'white',
-			}}
-		>
-			<Text>1</Text>
-			<Text>2</Text>
-			<Text>3</Text>
-			<Text>4</Text>
-			<Text>5</Text>
+		<Group spacing="xss">
+			<Group
+				direction="column"
+				position="left"
+				spacing="xssT"
+				style={{
+					marginLeft: '40px',
+				}}
+			>
+				{guessKeys.map((key) => {
+					return (
+						<Text size="sm" weight={600}>
+							{key}
+						</Text>
+					);
+				})}
+			</Group>
+			<Group direction="column" position="left" spacing="xss">
+				{guessKeys.map((key) => {
+					return <GuessNumber key={key} number={key} value={guesses[key]} />;
+				})}
+			</Group>
 		</Group>
 	);
 };

@@ -30,10 +30,6 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 			size="md"
 			styles={{
 				title: { fontWeight: '800' },
-				modal: {
-					boxShadow: '0px 0px 20px 1px grey',
-					outline: 'none',
-				},
 			}}
 		>
 			<Group>

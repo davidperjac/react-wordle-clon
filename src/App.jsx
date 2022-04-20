@@ -6,6 +6,7 @@ function App() {
 	const { dark } = useTheme();
 	const styles = {
 		spacing: {
+			xxl: 50,
 			xss: 5,
 			xssT: 3,
 		},

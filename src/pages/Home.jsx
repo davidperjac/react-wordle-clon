@@ -9,7 +9,7 @@ const Home = () => {
 		<Group direction="column" position="center">
 			<EndModal />
 			<Header />
-			<Space h="md" />
+			<Space h="xss" />
 			<Grid />
 			<Space h="xs" />
 			<Keyboard />
