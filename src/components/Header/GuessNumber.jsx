@@ -1,7 +1,10 @@
 import { Text, Group } from '@mantine/core';
 import { useWords } from '../../hooks/useWords';
+import { useMediaQuery } from '@mantine/hooks';
 
 const GuessNumber = ({ number, value }) => {
+	const isMobile = useMediaQuery('(max-width: 768px)');
+
 	const { gridWords, searchWord } = useWords();
 	const win = gridWords.includes(searchWord);
 	const backgroundColor =
@@ -11,7 +14,7 @@ const GuessNumber = ({ number, value }) => {
 	const numberStyle = {
 		backgroundColor: backgroundColor,
 		color: 'white',
-		width: value === 0 ? 25 : 400 * (value / gamesWon),
+		width: value === 0 ? 25 : isMobile ? 200 : 400 * (value / gamesWon),
 		height: 19,
 		paddingRight: value !== 0 && '5px',
 	};
