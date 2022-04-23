@@ -1,5 +1,4 @@
 import { addLetter, sendWord, setError } from '../../redux/actions';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { isLetterUsed } from '../../utils/isLetterUsed';
 import { useViewportSize } from '@mantine/hooks';
 import { useWords } from '../../hooks/useWords';
@@ -17,9 +16,9 @@ const Letter = ({ letter }) => {
 		guessWord,
 		letterColors,
 	} = useWords();
+	const play = JSON.parse(window.localStorage.getItem('PLAY'));
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const used = isLetterUsed(gridWords, letter);
-	const [play] = useLocalStorage('PLAY', '');
 	const [color, setColor] = useState('');
 	const hasColor = used && color !== '';
 	const { width } = useViewportSize();

@@ -1,9 +1,8 @@
-import { useLocalStorage } from './useLocalStorage';
 import { checkKey } from '../utils/checkKey';
 import { useState, useEffect } from 'react';
 
 export const useKeyboardPress = () => {
-	const [play] = useLocalStorage('PLAY', '');
+	const play = JSON.parse(window.localStorage.getItem('PLAY'));
 	const [key, setKey] = useState('');
 
 	useEffect(() => {

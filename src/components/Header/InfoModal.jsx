@@ -1,8 +1,8 @@
 import { Modal, Text, Group } from '@mantine/core';
-import { useEffect } from 'react';
 import AdultWord from '../Words/AdultWord';
 import CoachWord from '../Words/CoachWord';
 import DreamWord from '../Words/DreamWord';
+import { useEffect } from 'react';
 
 const InfoModal = ({ infoModal, setInfoModal }) => {
 	const linkStyle = { textDecoration: 'none', color: '#6ba964', weight: 800 };
@@ -21,12 +21,13 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 			onClose={() => setInfoModal(false)}
 			transitiontimingfunction="linear"
 			transitionDuration={400}
-			overlayOpacity={0.3}
+			withCloseButton={false}
 			transition="slide-up"
+			overlayOpacity={0.3}
 			title="HOW TO PLAY!"
-			overflow="none"
 			opened={infoModal}
 			trapFocus={false}
+			overflow="none"
 			size="md"
 			styles={{
 				title: { fontWeight: '800' },
@@ -47,7 +48,7 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
 				<Text size="md" weight={800}>
 					A new REACDLE will be available each day!
 				</Text>
-				<Text size="sm" weight={600}>
+				<Text size="sm" weight={800}>
 					This is an adaptation of
 					<a
 						href="https://www.nytimes.com/games/wordle/index.html"

@@ -11,7 +11,7 @@ const Home = () => {
 			<Header />
 			<Space h="xss" />
 			<Grid />
-			<Space h="xs" />
+			<Space h="xss" />
 			<Keyboard />
 		</Group>
 	);

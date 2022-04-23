@@ -16,7 +16,7 @@ const Guesses = () => {
 			>
 				{guessKeys.map((key) => {
 					return (
-						<Text size="sm" weight={600}>
+						<Text key={key} size="sm" weight={600}>
 							{key}
 						</Text>
 					);

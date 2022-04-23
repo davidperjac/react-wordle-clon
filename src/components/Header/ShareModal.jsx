@@ -22,7 +22,7 @@ const ShareModal = ({ shareModal, setShareModal }) => {
 			}}
 		>
 			<Group>
-				<Title order={4}>Copied to Clipboard!</Title>
+				<Title order={5}>Copied to Clipboard!</Title>
 			</Group>
 		</Modal>
 	);

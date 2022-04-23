@@ -1,7 +1,9 @@
+import { useMediaQuery } from '@mantine/hooks';
 import { useState, useEffect } from 'react';
 import { Title } from '@mantine/core';
 
 const Clock = () => {
+	const isMobile = useMediaQuery('(max-width: 768px)');
 	const [date, setDate] = useState();
 
 	function refreshClock() {
@@ -17,7 +19,7 @@ const Clock = () => {
 		);
 		const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 		const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+		
 		setDate(
 			(hours < 10 ? '0' : '') +
 				hours +
@@ -37,7 +39,7 @@ const Clock = () => {
 		};
 	}, []);
 
-	return <Title>{date}</Title>;
+	return <Title order={isMobile ? 2 : 1}>{date}</Title>;
 };
 
 export default Clock;
