@@ -16,6 +16,8 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const { dispatch } = useWords();
 
+	console.log(process.env.NODE_ENV);
+
 	const handleClose = () => {
 		setStatsModal(false);
 		if (!statsModal) {
