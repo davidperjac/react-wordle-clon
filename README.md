@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+<br/>
+<p align="center">
+  <a href="https://github.com/davidperjac/react-wordle-clon">
+    <img src="public/resources/logo.png" alt="Logo" width="250" height="100">
+  </a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h3 align="center">Reacdle</h3>
 
-## Available Scripts
+  <p align="center">
+    A Wordle clon built just with React!
+    <br/>
+    <br/>
+    <a href="https://reacdle.netlify.app/">View Demo</a>
+  </p>
+</p>
 
-In the project directory, you can run:
+![Contributors](https://img.shields.io/github/contributors/davidperjac/react-wordle-clon?color=dark-green) ![Issues](https://img.shields.io/github/issues/davidperjac/react-wordle-clon) ![License](https://img.shields.io/github/license/davidperjac/react-wordle-clon) 
 
-### `npm start`
+## Table Of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* [About the Project](#about-the-project)
+* [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+* [Usage](#usage)
+* [Authors](#authors)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## About The Project
 
-### `npm test`
+![Screen Shot](public/resources/main.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Reacdle is a Wordle clone built using React. This project was created with the goal of providing a fun and interactive game that challenges players to guess a secret five-letter word using a limited number of attempts.
 
-### `npm run build`
+Reacdle features a simple and intuitive user interface that allows players to easily enter their guesses and receive feedback on their progress. The game logic is implemented using JavaScript, with the React framework handling the rendering of the user interface.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project serves as an excellent introduction to React for beginners who are looking to build their skills in front-end web development. It also provides a challenging and entertaining game that can be enjoyed by players of all ages and skill levels.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Feel free to clone this repository and customize it to suit your needs or contribute to the development of the project by submitting pull requests or opening issues.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Built With
 
-### `npm run eject`
+The technologies used for this project were:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* [React](https://es.react.dev/)
+* [Mantine](https://mantine.dev/)
+* [Redux](https://redux.js.org/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To use this application, simply clone the repository, install the dependencies, and start the development server. Here are the steps:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Installation
 
-## Learn More
+1. Clone the repo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+git clone https://github.com/davidperjac/react-wordle-clon.git
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Install NPM packages
 
-### Code Splitting
+```sh
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. Start the development server
 
-### Analyzing the Bundle Size
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. Open your web browser and go to `http://localhost:3000`
 
-### Making a Progressive Web App
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Reacdle implements all the functionalities of the Wordle game.
 
-### Advanced Configuration
+- Animations
+![Screen Shot](public/resources/main.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Dark Mode
+![Screen Shot](public/resources/dark.png)
 
-### Deployment
+- Statistics
+![Screen Shot](public/resources/stats.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- One word per day 
 
-### `npm run build` fails to minify
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **David Perez** - *FullStack Developer* - [David Perez](https://github.com/davidperjac) - *App*
