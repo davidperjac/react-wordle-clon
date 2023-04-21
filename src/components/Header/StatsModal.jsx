@@ -1,13 +1,13 @@
-import { Modal, Text, Group, Space } from '@mantine/core';
-import { openStats } from '../../redux/actions';
-import { useWords } from '../../hooks/useWords';
+import { Group, Modal, Space, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useSelector } from 'react-redux';
-import ShareButton from './ShareButton';
-import StatGroup from './StatGroup';
+import { useWords } from '../../hooks/useWords';
+import { openStats } from '../../redux/actions';
+import Clock from './Clock';
 import Divider from './Divider';
 import Guesses from './Guesses';
-import Clock from './Clock';
+import ShareButton from './ShareButton';
+import StatGroup from './StatGroup';
 
 const StatsModal = ({ statsModal, setStatsModal }) => {
 	const statistics = JSON.parse(window.localStorage.getItem('STATISTICS'));
@@ -15,8 +15,6 @@ const StatsModal = ({ statsModal, setStatsModal }) => {
 	const stats = useSelector((state) => state.end.stats);
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const { dispatch } = useWords();
-
-	console.log(process.env.NODE_ENV);
 
 	const handleClose = () => {
 		setStatsModal(false);
