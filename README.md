@@ -33,8 +33,6 @@ Reacdle is a Wordle clone built using React. This project was created with the g
 
 Reacdle features a simple and intuitive user interface that allows players to easily enter their guesses and receive feedback on their progress. The game logic is implemented using JavaScript, with the React framework handling the rendering of the user interface.
 
-This project serves as an excellent introduction to React for beginners who are looking to build their skills in front-end web development. It also provides a challenging and entertaining game that can be enjoyed by players of all ages and skill levels.
-
 Feel free to clone this repository and customize it to suit your needs or contribute to the development of the project by submitting pull requests or opening issues.
 
 ## Built With
